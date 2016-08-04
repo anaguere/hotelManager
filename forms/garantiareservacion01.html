@@ -1,0 +1,195 @@
+{% extends "base.html.twig" %}
+
+
+{% block content_wrapper %}
+
+<!-- Main content -->
+<section class="content">
+    <div class="row" style="margin-bottom: 0; padding-bottom: 0">
+        <!-- left column -->
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-body"> 
+
+
+                    <table class="table table-condensed" style="font-size: 24px;">
+                        <tr>
+                            <td style="font-size: 24px; width: 300px" >  <i class="fa fa-tag"></i>    <strong>{{ reservaciones[0].codigo_id }}</strong>  </td>
+                            <td>  <i class="fa fa-calendar"></i>     <i class="fa fa-arrow-down"> </i> {{ reservaciones[0].reservacion_desde }} &nbsp;&nbsp;&nbsp;&nbsp;</td>                              
+                            <td>  <i class="fa fa-calendar"></i>    <i class="fa fa-arrow-up"> </i>   {{ reservaciones[0].reservacion_hasta }} &nbsp;&nbsp;&nbsp;&nbsp; </td>
+                            <td>   <i class="fa fa-bed"> </i>   {{ reservaciones[0].reservacion_nombre }} {{ reservaciones[0].reservacion_categoria }}  </td>           
+
+
+                        </tr>
+                    </table>
+
+                </div><!-- /.box-header -->
+
+            </div><!-- /.box -->   
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->         
+
+            <!-- Form Element sizes -->
+            <div class="box box-success" >
+                <div class="box-header">
+                    <h3 class="box-title"  style="font-weight: 500; color:darkgreen">     
+                        <i class="fa fa-user"></i>  Datos del Huesped Principal
+                    </h3>
+
+
+
+                </div>
+
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tr>
+                            <td style="text-align:left;"><strong> Nombre Cliente: </strong>{{ reservaciones[0].cliente_apellido }} {{ reservaciones[0].cliente_nombre}} </td>
+                            <td style="text-align:left;"><strong> Número Documento: </strong>{{ reservaciones[0].cliente_documento }} </td>      
+                            <td style="text-align:left;"><strong> Nacionalidad: </strong>{{ reservaciones[0].cliente_nacionalidad }}  </td> 
+                            <td style="text-align:left;"><strong>Correo Electronico: </strong> {{ reservaciones[0].cliente_correo }}  </td>                               
+                        </tr> 
+                        <tr >
+
+                            <td style="text-align:left;"><strong>Número Teléfonico:</strong> {{ reservaciones[0].cliente_telefono }}  </td> 
+                            <td style="text-align:left;"><strong>Movil: </strong>  {{ reservaciones[0].cliente_movil }} </td>                              
+                            <td style="text-align:left;" colspan="2"><strong>Dirección: </strong> {{ reservaciones[0].cliente_direccion }} </td> 
+                        </tr>    
+                        <tr >
+
+                            <td style="text-align:left;"><strong>Empresa:</strong>  {{ reservaciones[0].empresa_nombre }} </td> 
+                            <td style="text-align:left;"><strong>Rif: </strong>  {{ reservaciones[0].empresa_rif }} </td>                              
+                            <td style="text-align:left;" colspan="2" ><strong>Dirección Empresa: </strong>  {{ reservaciones[0].empresa_direccion }}</td> 
+                        </tr>    
+                    </table>
+
+                </div>        
+            </div>  
+
+            <div class="box box-success  box-solid">
+                <div class="box-header with-border">
+                    <i class="fa fa-credit-card"></i> <h3 class="box-title"> Garantía la reservación </h3>
+
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                    </div><!-- /.box-tools -->
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <form role="form" method="POST" action="index.php">
+                        <input type="hidden" name="garantiareservacion01" value="true" >
+                        
+                        <div class="col-xs-6">
+                            <div class="form-group" >
+                                <label class="control-label" >Nombre Titular TDC</label>
+                                <input  name="nombre_titular" type="text" class="form-control" placeholder="" value=" {{ reservaciones[0].garantia_nombre_titular }}">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <div class="form-group" >
+                                <label class="control-label" >Banco Emisor TDC</label>
+                                <input name="banco"  type="text" class="form-control" placeholder="" value="{{ reservaciones[0].garantia_banco }}">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <div class="form-group" >
+                                <label class="control-label" >Cédula o Pasaporte Titular TDC</label>
+                                <input name="documento_titular" type="text" class="form-control" placeholder="" value="{{ reservaciones[0].garantia_documento_titular }} ">
+                            </div>
+                        </div>   
+
+
+
+                        <div class="col-xs-6">
+                            <div class="form-group" >
+                                <label class="control-label" >Fecha de Vencimiento TDC</label>
+                                <input name="vencimiento" type="text" class="form-control" placeholder="01/19" value="{{ reservaciones[0].garantia_vencimiento }}">
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="col-xs-6">
+                            <div class="form-group" >
+                                <label class="control-label" >Número TDC</label>
+                                <input name="numero"  type="text" class="form-control" placeholder="" value="{{ reservaciones[0].garantia_numero }}">
+                            </div>
+                        </div>                 
+
+                        <div class="col-xs-6">
+                            <div class="form-group" >
+                                <label class="control-label" >Codigo de Seguridad TDC</label>
+                                <input name="codigo"  type="text" class="form-control" placeholder="" value="{{ reservaciones[0].garantia_codigo }}">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <div class="form-group" >
+                                <label class="control-label" >Observación</label>
+                                <input name="garantiaobservacion"  type="text" class="form-control" placeholder="" value="{{ reservaciones[0].garantia_observacion }}">
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="form-group" >                
+                                <button  value="true" type="submit"  name="aprobar" class="btn btn-block btn-success " >
+                                    <i class="fa fa-check-square-o"></i> Aprobar Tarjeta 
+                                </button>   
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div class="form-group" >                
+                                <button  value="true" type="submit"  name="desaprobar" class="btn btn-block btn-danger " >
+                                    <i class="fa fa-check-square-o"></i> Desaprobar Tarjeta 
+                                </button>   
+                            </div>
+                        </div>                        
+                    </form>    
+                </div><!-- /.box-body -->
+
+            </div><!-- /.box -->
+
+
+            <!-- /.box-body -->
+
+
+            <!-- Form Element sizes -->
+
+        </div><!--/.col (left) -->
+        <!-- right column -->
+
+    </div>   <!-- /.row -->
+</section><!-- /.content -->
+
+
+{% endblock %}
+
+{% block javascript %}
+
+
+<script type="text/javascript">
+    var file = "reservacion02";
+    function registro_huesped() {
+        document.registro.submit();
+
+
+
+    }
+
+</script>
+
+{% endblock %}
+
+
+
+
+
+
+

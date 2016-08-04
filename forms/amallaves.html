@@ -1,0 +1,99 @@
+{% extends "base.html.twig" %}
+
+
+{% block content_wrapper %}
+<section class="content-header">
+
+    <div class="row">
+
+        <div class="col-md-2" style="margin-bottom: 5px; font-weight: bold">
+
+            <i class="fa fa-bed "></i> AMA DE LLAVES 
+
+
+        </div>    
+        <!-- left column -->
+        <div class="col-md-2" style="margin-bottom: 5px; font-weight: bold">
+            <i class="fa fa-calendar"></i> {{ dato.hoy }}
+        </div>      
+        <div class="col-md-8" style="margin-bottom: 5px">
+            <span class="badge bg-green" > Vacante Limpia: {{ resumen_amallaves.VL }} </span>    
+            <span class="badge bg-blue" > Vacante Sucia: {{ resumen_amallaves.VS }} </span>          
+            <span class="badge bg-yellow" >Ocupada Limpia: {{ resumen_amallaves.OL }}</span>    
+            <span class="badge bg-red" >Ocupada Sucia: {{ resumen_amallaves.OS }} </span>      
+            <span class="badge bg-gray" >Fuera de servicio: {{ resumen_amallaves.FS }}</span>      
+        </div>
+    </div>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+
+    <!-- left column -->
+    <div class="col-md-12">
+
+        <div  id="visor" class="box box-warning" style="padding-left:20px; padding-right: 20px">
+
+
+
+                    <table class="table " style="margin-left: 10px; margin-top: 10px">
+                        {% for habitaciony in habitaciones %}
+                        <tr>
+                            {% for habitacion in habitaciony %}
+                            <th style="padding: 2px; ">
+                                <button onclick="test('{{ habitacion.habitacion_id }}')" class="btn btn-block btn-{{ habitacion.estadoocupacion_color }} btn-sm  "  style="margin: 0px; padding: 0px; width: 90%" >
+                                    <strong>  
+                                        {{ habitacion.habitacion_categoria }} 
+                                        <br>
+                                        <span style="font-size: 13px">{{ habitacion.habitacion_nombre }}</span>  
+                                        {{ habitacion.validacionocupacion_icono|raw }} 
+
+                                    </strong> 
+                                </button>
+                            </th>                                    
+                            {% endfor %}  
+
+                        </tr> 
+                        {% endfor %}  
+                    </table>     
+        </div><!-- /.box -->          
+
+
+    </div><!--/.col (left) -->
+
+
+</section><!-- /.content -->
+
+
+
+
+
+
+{% endblock %}
+
+{% block javascript %}
+
+
+<script src="lsdAjax.js"></script>  
+
+<script>
+
+                                function test(val) {
+                                accion_lsd('rack01', [val], 'visor');
+                                }
+
+                                $("#example1").dataTable();
+                                //iCheck for checkbox and radio inputs
+
+
+</script>
+
+{% endblock %}
+
+
+
+
+
+
+

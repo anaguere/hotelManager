@@ -1,0 +1,84 @@
+{% extends "base.html.twig" %}
+
+
+{% block content_wrapper %}
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+          
+            <form role="form" method="POST" action="index.php">
+                <input type="hidden" name="opciones_supervision" value="true" >
+    
+                <!-- Form Element sizes -->
+                <div class="box box-success" >
+                    <div class="box-header">
+                        <h3 class="box-title"  style="font-weight: 500; color:darkgreen">     
+                            <i class="fa fa-wrench"></i>  Datos de la supervisión
+                        </h3>
+
+
+
+                    </div>
+
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover">
+                            <tr>
+                                <td style="text-align:left;"><strong> Habitación: </strong>{{ supervision.habitacion_nombre }}  </td>
+                                <td style="text-align:left;"><strong>Categoria: </strong> {{ supervision.habitacion_categoria }}  </td>         
+                                <td style="text-align:left;"><strong> Fecha Registro: </strong>{{ supervision.supervision_fecha }} </td>      
+                                <td style="text-align:left;"><strong> Hora Registro: </strong>{{ supervision.supervision_hora }}   </td> 
+
+                            </tr> 
+                            <tr>
+                                <td colspan="4" style="text-align:left;"><strong> Falla: </strong>{{ supervision.falla_nombre }} </td>
+                            </tr>                         
+                            <tr >
+                                <td colspan="4" style="text-align:left;">
+                                    <small><i>{{ supervision.supervision_observacion }} </i> </small>   
+                                </td>
+                            </tr>    
+                            <tr>
+                                <td colspan="3"  style="text-align:left;"><strong> Observación al solventar: </strong>
+                                    <input  name="observacion_solucion" value="{{ supervision.supervision_solucion }}"  type="text" class="form-control" placeholder="Describa aquí la solución">
+
+                                </td>
+                                <td  style="text-align:left;"><br>
+                                    <button  value="true" type="submit"  name="solventar_supervision" class="btn btn-block btn-success " >
+                                        <i class="fa fa-check-square-o"></i>    Solventar 
+                                    </button>   
+                                </td>
+                            </tr> 
+                        </table>
+
+                    </div>        
+                </div>  
+            </form>
+
+
+
+
+
+        </div><!--/.col (left) -->
+        <!-- right column -->
+
+    </div>   <!-- /.row -->
+</section><!-- /.content -->
+
+
+{% endblock %}
+
+{% block javascript %}
+
+
+{% endblock %}
+
+
+
+
+
+
+

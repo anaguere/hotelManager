@@ -1,0 +1,157 @@
+{% extends "base.html.twig" %}
+
+
+{% block content_wrapper %}
+<section class="content-header">
+    <h1></i>
+        <i class="fa fa-wrench "></i> Supervisión 
+        <small>{{ dato.hoy }}</small>
+    </h1>
+
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-8">
+
+            <div class="box box-warning">
+
+                <div class="box-body table-responsive no-padding">
+                    <br>
+                    <table class="table ">
+
+
+
+                        {% for habitaciony in habitaciones %}
+
+                        <tr>
+
+
+                            {% for habitacion in habitaciony %}
+
+
+                            <th style=" text-align:left; margin-top: 5px; padding: 0px">
+                                <button onclick="supervision('{{ habitacion.habitacion_id }}')" class="btn btn-block btn-{{ habitacion.estadoocupacion_color }} btn-sm" style="width: 100px;  padding: 0px;">
+                                    {{ habitacion.habitacion_categoria }}<br>
+                                    <strong> {{ habitacion.habitacion_nombre }}</strong>
+                                </button>
+                            </th>                                    
+
+
+
+                            {% endfor %}  
+
+                        </tr> 
+                        {% endfor %}  
+
+
+                    </table>     
+
+                </div>       
+
+
+                <!-- /.box-body -->
+            </div><!-- /.box -->          
+
+
+        </div><!--/.col (left) -->
+
+
+
+        <div class="col-md-4">        
+
+
+
+            <div class='box box-success  box-solid'>
+                <div class='box-header with-border'>
+                    <i class='fa fa-bed'></i> <h3 class='box-title'> Detalle de la Habitación </h3>
+
+                    <div class='box-tools pull-right'>
+                        <button class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-plus'></i></button>
+                    </div><!-- /.box-tools -->
+                </div><!-- /.box-header -->
+                <div class='box-body'>
+
+                    <div id="visor" class="box-body table-responsive no-padding" style="padding-left: 10px">
+
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+
+
+            </div>
+
+            <div class='box box-warning collapsed-box box-solid'>
+                <div class='box-header with-border'>
+                    <i class='fa fa-wrench'></i> <h3 class='box-title'> Detalle de la supervisión </h3>
+
+                    <div class='box-tools pull-right'>
+                        <button class='btn btn-box-tool' data-widget='collapse'><i class='fa fa-plus'></i></button>
+                    </div><!-- /.box-tools -->
+                </div><!-- /.box-header -->
+                <div class='box-body'>
+
+                    <div id="visor1" class="box-body table-responsive no-padding" style="padding-left: 10px">
+
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+
+
+            </div><!-- /.bo
+
+
+        </div><!--/.col (left) -->          
+
+
+
+        </div>   <!-- /.row -->
+</section><!-- /.content -->
+
+
+{% endblock %}
+
+{% block javascript %}
+
+
+<script src="lsdAjax.js"></script>  
+
+<script>
+
+
+                                    function supervision01(val){
+                                            accion_lsd('supervision01', [val], 'supervision01');
+                                    }
+
+                                    function supervision(val) {
+                                            accion_lsd('supervision', [val], 'visor');
+                                    }
+
+                                    function savesupervision() {
+                                            id = $("#supervision01_id").val();
+                                            obs = $("#observacion").val();
+                                            hab = $("#habitacion_id").val();
+                                            $("#observacion").val('');
+                                            $("#supervision01_id").val('50');
+                                            accion_lsd('savesupervision', [id, obs, hab], 'visor1');
+                                    }
+
+
+                                    function delsupervision(id){
+                                            hab = $("#habitacion_id").val();
+                                            accion_lsd('delsupervision', [id, hab], 'visor1');
+                                    }
+
+
+
+</script>
+
+{% endblock %}
+
+
+
+
+
+
+

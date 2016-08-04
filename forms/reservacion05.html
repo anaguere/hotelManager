@@ -1,0 +1,95 @@
+{% extends "base.html.twig" %}
+
+
+{% block content_wrapper %}
+
+
+<section class="content-header">
+    <h1>
+        <i class="fa fa-tag text-yellow"></i>    Reservaciones 
+        <small>Pendientes por Check In</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio </a></li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+
+            <div class="box">
+
+                <div class="box-body">
+                    <table id="example1" class="table table-bordered table-striped tbl1"  >
+                        <thead>
+                            <tr>
+                                <th style="width:50px"><i class="fa fa-warning text-yellow"></i></th>    
+                                <th style="width:100px"><i class="fa fa-tags"></i> Localizador</th> 
+                                <th style="width:100px" > <i class="fa fa-bed"> </i> Hab</th>                                 
+                                <th style="width:100px"> <i class="fa fa-arrow-down"></i> Entrada</th>
+                                <th style="width:100px"> <i class="fa fa-arrow-up"></i>  Salida</th>
+                                <th  style="width:100px" > <i class="fa fa-file-text-o"></i>Documento </th>                          
+                                <th style="width:200px"><i class="fa fa-user"> </i>  Nombre Huesped</th>
+
+                                <th  style="width:50px" ></th>                    
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for reservacion in reservaciones %}   
+                            <tr>
+                                <td> {{ reservacion.garantia|raw }}  <a href="?opcion=tarjeta&codigo={{ reservacion.get }}"><i class="fa fa-bookmark"></i></a></td>
+                                <td>
+                                    <a href="?opcion=busquedareservacion&codigo={{ reservacion.get }}" class="localizador"> 
+                                        {{ reservacion.reservacion_codigo }}
+                                    </a>   
+                                </td>
+                                <td class="localizador" >
+                                    {{ reservacion.reservacion_nombre  }} / {{ reservacion.reservacion_categoria  }}
+                                </td>  
+
+                                <td>{{ reservacion.reservacion_desde }} {{  reservacion.semana_desde }}</td>
+                                <td>{{ reservacion.reservacion_hasta }} {{ reservacion.semana_hasta }}</td>
+                                <td>{{ reservacion.cliente_documento }}</td>                          
+                                <td>{{ reservacion.cliente_nombre  }} {{ reservacion.cliente_apellido  }}</td>
+
+                                <td>                                         
+                                    {{ reservacion.personas }} <i class="fa fa-users"></i></td>    
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+
+        </div><!--/.col (right) -->
+    </div>   <!-- /.row -->
+</section><!-- /.content -->
+
+
+{% endblock %}
+
+{% block javascript %}
+<script src="plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function() {
+    var file = "ocupacion01";
+
+    $("#example1").dataTable();
+
+});
+</script>
+
+{% endblock %}
+
+
+
+
+
+
+

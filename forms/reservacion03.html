@@ -1,0 +1,453 @@
+{% extends "base.html.twig" %}
+
+
+{% block content_wrapper %}
+<div class="row">
+
+    <div class="col-md-12">
+
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+                    <div class="col-md-12" style="padding-bottom: 10px; padding-top: 10px">
+
+                        <input type="hidden" name="reservacion03" value="true" > 
+                        <input type="hidden" name="reservacion_codigo" value="{{ reservaciones[0].reservacion_codigo }}" >
+                        <input type="hidden" name="reservacion_id" value="{{ reservaciones[0].reservacion_id }}" >                        
+
+                        <form role="form" name="formpago2" method="POST" action="index.php">
+                            <div class="col-md-2">
+                                <button  value="true"  type="submit"  name="iratrasreservacion" class="btn btn-block btn-success  btn1" style="font-weight: 700">
+                                    <i class="fa fa-arrow-left"></i> Ir Atrás 
+                                </button>   
+                            </div>
+                        </form>                       
+
+
+
+                        <div class="col-md-2">
+                            <button   type="button" name=""  onclick="boton_formedicion()" class="btn btn-block btn-primary btn1" >
+                                <i class="fa fa-check-square-o"></i>    Confirmar Edición
+                            </button>      
+                        </div>
+
+
+
+
+                    </div>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+
+    </div>
+
+
+
+</div>
+
+
+<form role="form" name="formedicion" method="POST" action="index.php">
+    <input type="hidden" name="edicionreservacion" value="true">
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+
+
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs pull-left" style="font-weight: 700">
+
+                        <li class="active"  ><a href="#tab_1-1" data-toggle="tab"><span style="color:red"><i class="fa fa-hotel"></i> {{reservaciones[0].reservacion_nombre }} {{reservaciones[0].reservacion_categoria }}</span>  </a></li>
+                        <li><a href="#tab_3-3" data-toggle="tab">Editar la Tarifa</a></li>
+                    </ul>
+                    <br><br><br>
+                    <div class="tab-content" style="padding: 5px">
+                        <div class="tab-pane  active" id="tab_1-1" style="height:400px; border-color: white" >
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2"  >Localizador</label>
+                                    <input style="font-weight: 700" readonly="readonly" name=""   value="{{reservaciones[0].reservacion_codigo }} "  type="text" class="form-control form-control3"  >
+                                </div>
+                            </div>  
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2"  >Llegada</label>
+                                    <input readonly="readonly" name=""  value="{{ reservaciones[0].reservacion_desde }} " type="text" class="form-control form-control2"  >
+                                </div>
+                            </div>             
+
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2"  >Salida</label>
+                                    <input readonly="readonly" name=""  value="{{ reservaciones[0].reservacion_hasta }}" type="text" class="form-control form-control2"  >
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2"  >Noches</label>
+                                    <input readonly="readonly" name="noches" value="{{ reservaciones[0].reservacion_noches }}" type="text" class="form-control form-control2"  >
+                                </div>
+                            </div>  
+
+                            <!--
+                            <div class="col-xs-1">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" >Adultos</label>
+                                    <input  name="" value="0"  type="text" class="form-control form-control2"  >
+                                </div> 
+                            </div>
+    
+                            <div class="col-xs-1">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" >Niño</label>
+                                    <input  name="" value="1"  type="text" class="form-control form-control2"  >
+                                </div> 
+                            </div>
+                            -->
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" >Reservada Por </label>
+                                    <input  name="contacto" value="{{ reservaciones[0].reservacion_contacto  }}"  type="text" class="form-control form-control2"  >
+                                </div>
+                            </div> 
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" >Telf  Email  Contacto </label>
+                                    <input  name="contactoinfo" value="{{ reservaciones[0].reservacion_contactoinfo  }}"  type="text" class="form-control form-control2"  >
+                                </div>
+                            </div>               
+
+
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2"  >C.I / Passport </label>
+                                    <input   name="documento"  value="{{ reservaciones[0].cliente_documento  }} " type="text" class="form-control form-control2"  >
+                                </div>
+                            </div>             
+
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2"  >Nombres</label>
+                                    <input  name="nombre"  value="{{ reservaciones[0].cliente_nombre }} " type="text" class="form-control form-control2"  >
+                                </div>
+                            </div>
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" >Apellidos</label>
+                                    <input   name="apellido" value="{{ reservaciones[0].cliente_apellido }} " type="text" class="form-control form-control2"  >
+                                </div>
+
+                            </div>  
+
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2"  >Nacionalidad</label>
+                                    <input  id="nacionalidad" name="nacionalidad" value="{{ reservaciones[0].cliente_nacionalidad }} " type="text" class="form-control form-control2"  >
+                                </div>
+                            </div>  
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2"  >Idioma</label>
+                                    <input  id="idioma" name="idioma"  value="{{  reservaciones[0].cliente_idioma }} " type="text" class="form-control form-control2"  >
+                                </div>
+                            </div>
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2"  >Pais</label>
+                                    <input id="pais"  name="pais"  value="{{ reservaciones[0].cliente_pais }} " type="text" class="form-control form-control2"  >
+                                </div>
+                            </div>
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2"  >VIP</label>
+                                    <input id="vip"  name="vip"  value="{{ reservaciones[0].cliente_vip }} " type="text" class="form-control form-control2"  >
+                                </div>
+                            </div>  
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" >Email</label>
+                                    <input   name="correo" value="{{ reservaciones[0].cliente_correo }} "  type="text" class="form-control form-control2"  >
+                                </div> 
+                            </div>
+
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" >Teléfono</label>
+                                    <input    name="telefono" value="{{ reservaciones[0].cliente_telefono }} "  type="text" class="form-control form-control2"  >
+                                </div>
+                            </div> 
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2"  >Ciudad</label>
+                                    <input id="ciudad" name="ciudad"  value="{{ reservaciones[0].cliente_ciudad }} " type="text" class="form-control form-control2"  >
+                                </div>
+                            </div>
+
+                            <div class="col-xs-4">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2">Dirección</label>
+                                    <input    name="direccion" value="{{ reservaciones[0].cliente_direccion }} " type="text"  class="form-control form-control2"  >
+                                </div>
+                            </div> 
+
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" >Medio de Reserva</label>
+                                    <input id="medioreservacion" name="medioreservacion" value="{{ reservaciones[0].reservacion_medio }}" type="text" class="form-control form-control2" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" > Origen </label>
+                                    <input id="origen"  name="origen" type="text"   value="{{ reservaciones[0].reservacion_origen }} " class="form-control form-control3" >
+                                </div>
+                            </div> 
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" >Destino</label>
+                                    <input  id="destino" name="destino"   type="text"  value="{{ reservaciones[0].reservacion_destino }} " class="form-control form-control3"  >
+                                </div>
+                            </div>               
+
+
+                            <div class="col-xs-2 ">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" >Motivo del Viaje</label>
+                                    {{ combo.motivoviaje|raw }}
+                                </div>
+                            </div>                             
+
+                            <div class="col-xs-2 ">
+
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" >Forma de Pago</label>
+                                    {{ combo.formapago|raw }}
+                                </div>
+                            </div>  
+
+
+
+                            <div class="col-xs-12 " style="border-bottom: 2px #c5c5c5 solid; margin-bottom: 10px"  >                 
+
+                            </div>
+
+
+
+
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" >ID Titular TDC</label>
+                                    <input   id="documento_titular" value="{{ reservaciones[0].garantia_documento_titular }}" name="documento_titular" type="text" class="form-control form-control2" placeholder="">
+                                </div>
+                            </div>   
+
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" >Nombre Titular TDC</label>
+                                    <input name="nombre_titular"  value="{{ reservaciones[0].garantia_nombre_titular }}" type="text" class="form-control form-control2" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" >Banco Emisor TDC</label>
+                                    <input   id="banco" name="banco"  value="{{ reservaciones[0].garantia_banco }}" type="text" class="form-control form-control2" placeholder="">
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" >Vence</label>
+                                    <input  id="vencimiento" name="vencimiento"  value="{{ reservaciones[0].garantia_vencimiento }}" type="text" class="form-control form-control2" placeholder="MM/AA">
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" > TDC N°</label>
+                                    <input   id="numero" name="numero"  value="{{ reservaciones[0].garantia_numero }}"  type="text" class="form-control form-control2" placeholder="">
+                                </div>
+                            </div>                 
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" >COD TDC</label>
+                                    <input id="codigo" name="codigo" value="{{ reservaciones[0].garantia_codigo }}"  type="text" class="form-control form-control2" placeholder="">
+                                </div>
+                            </div>
+
+
+
+
+
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" > N° Referencia</label>
+                                    <input  name="referencia" value="{{ reservaciones[0].garantiareservacion_referencia }}"  type="text" class="form-control form-control2" placeholder="">
+                                </div>
+                            </div>
+
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" > Tipo Garantía</label>
+                                    <input  id="tipogarantia" name="tipogarantia" value="{{ reservaciones[0].garantiareservacion_tipogarantia }}"  type="text" class="form-control form-control2" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="col-xs-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" > Monto de Bloqueo </label>
+                                    <input  id="montobloqueo" name="montobloqueo" value="{{ reservaciones[0].montobloqueo }}"  type="text" class="form-control form-control2" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" >Observación</label>
+                                    <input name="garantiaobservacion" value="{{ reservaciones[0].garantia_observacion }}"  type="text" class="form-control form-control2" placeholder="">
+                                </div>
+                            </div>
+
+
+                            <div class="col-xs-12 top01" style="border-bottom: 2px #c5c5c5 solid; margin-bottom: 10px"  >                 
+
+                            </div>
+
+
+                            <div class="col-md-4">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" >Nombre de la empresa</label>
+                                    <input   value="{{ reservaciones[0].empresa_nombre }}"  name="nombre_empresa" type="text" class="form-control form-control2" placeholder="">
+                                </div>
+
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" >RIF</label>
+                                    <input  value="{{ reservaciones[0].empresa_rif }}"   name="rif_empresa" type="text" class="form-control form-control2" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group" >
+                                    <label class="control-label control-label2" >Dirección</label>
+                                    <input    value="{{ reservaciones[0].empresa_direccion }}"  name="direccion_empresa" type="text" class="form-control form-control2" placeholder="">
+                                </div>
+                            </div>  
+                        </div><!-- /.tab-pane -->                 
+
+                        <div class="tab-pane" id="tab_3-3"  style="height:150px; border-color: white" >
+
+                            <div class="col-md-12" style="background-color: white" id="tabla_tarifa">
+
+                                {{ tablatarifa['edicion']|raw }} 
+
+                            </div>
+                        </div><!-- /.tab-pane -->
+                    </div><!-- /.tab-content -->
+                </div><!-- nav-tabs-custom -->  
+
+
+
+
+
+            </div><!--/.col (left) -->
+            <!-- right column -->
+
+        </div>   <!-- /.row -->
+    </section><!-- /.content -->
+
+</form>
+{% endblock %}
+
+{% block javascript %}
+
+<script src="lsdAjax.js"></script>  
+<script src="autocompletado.js"></script>  
+<script>
+
+                                $('#codigo').inputmask("999");  //static mask
+                                $('#vencimiento').inputmask("99/99");  //static mask
+                                $('#numero').inputmask("9999-9999-9999-9999");  //static mask
+                                $('#nacimiento').inputmask("99/99/9999");  //static mask
+
+                                function combo(id, cantidad) {
+                                    accion_lsd('combo', [id, cantidad], 'tabla_tarifa');
+                                }
+
+                                function combotarifa(id, dato) {
+                                    accion_lsd('combotarifa', [id, dato], 'tabla_tarifa');
+                                }
+
+                                function editar(id) {
+                                    accion_lsd('editartarifa', [id], 'cambiotarifa');
+                                }
+
+
+                                function aplicarcambio() {
+                                    accion_lsd('editartarifa01', [$('#valornuevo').val(), $('#motivonuevo').val()], 'tabla_tarifa');
+                                }
+
+</script>
+<script type="text/javascript">
+    var file = "reservacion02";
+
+
+    function boton_formedicion() {
+        document.formedicion.submit();
+    }
+
+
+
+
+
+
+
+</script>
+
+{% endblock %}
+
+
+
+
+
+
+

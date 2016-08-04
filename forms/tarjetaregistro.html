@@ -1,0 +1,234 @@
+{% extends "base.html.twig" %}
+
+
+{% block content_wrapper %}
+
+<div class="row">
+
+    <div class="col-md-8" style="background: white"> 
+
+
+        <div class="col-md-4">
+            <img src="dist/img/logogrande2.png"  style="width: 200px" class="img-circle" alt="user image"/>
+        </div>
+        <div class="col-md-8" style="color:gray;font-size: 19px; padding-top: 30px; font-weight: 800">
+            TARJETA DE REGISTRO / REGISTRATION CARD
+        </div>        
+
+        <div class="col-md-12" style="color:gray;font-size: 14px; padding-top:5px; font-weight: 500; text-align: center">
+            Hora de llegada 03:00 pm - Hora de Salida 10:00 pm / Check in time 03:00 pm - Check out time 12:00 pm
+        </div>  
+
+        <div class="col-md-5 tr_block" >
+            Apellidos / Last Name * <br>
+            <span class="tr_text">{{ reservaciones[0].cliente_apellido   }}</span>
+        </div>  
+
+        <div class="col-md-5 tr_block" >
+            Nombre / First Name *<br>
+            <span class="tr_text">{{ reservaciones[0].cliente_nombre   }}</span>
+        </div> 
+
+        <div class="col-md-2 tr_block" >
+            Habitación / Room<br>
+            <span class="tr_text">{{ reservaciones[0].reservacion_nombre   }}</span>
+        </div> 
+
+
+        <div class="col-md-7 tr_block" >
+            Dirección / Home Address *<br>
+            <span class="tr_text">{{ reservaciones[0].cliente_direccion   }}</span>
+        </div>  
+
+        <div class="col-md-3 tr_block" >
+            C.I. / Passport *<br>
+            <span class="tr_text">{{ reservaciones[0].cliente_documento   }}</span>
+        </div> 
+
+        <div class="col-md-2 tr_block" >
+            N° Confirmación / Conf.<br>
+            <span class="tr_text">{{ reservaciones[0].reservacion_codigo   }}</span>
+        </div> 
+
+
+        <div class="col-md-3 tr_block" >
+            Ciudad / City *<br>
+            <span class="tr_text">{{ reservaciones[0].cliente_ciudad   }}</span>
+        </div>  
+
+        <div class="col-md-2 tr_block" >
+            Estado / State<br>
+            <span class="tr_text"></span>
+        </div> 
+
+        <div class="col-md-2 tr_block" >
+            País / Country<br>
+            <span class="tr_text">{{ reservaciones[0].cliente_pais   }}</span>
+        </div> 
+
+        <div class="col-md-3 tr_block" >
+            Estado Civil / Marital Status<br>
+            <span class="tr_text">{{ cliente.cliente_civil   }}</span>
+        </div>         
+
+        <div class="col-md-2 tr_block" >
+            Personas / Persons<br>
+            <span class="tr_text">{{ reservaciones[0].personas   }}</span>
+        </div>       
+
+
+
+
+        <div class="col-md-5 tr_block" >
+            Telefono / Telephone *<br>
+            <span class="tr_text">{{ reservaciones[0].cliente_telefono   }}</span>
+        </div>  
+
+        <div class="col-md-5 tr_block" >
+            Correo Electrónico / Email<br>
+            <span class="tr_text">{{ reservaciones[0].cliente_correo   }}</span>
+        </div> 
+
+        <div class="col-md-2 tr_block" >
+            Tarifa / Rate<br>
+            <span class="tr_text" style="font-size: 12px">{{ reservaciones[0].tarifa   }}</span>
+        </div>  
+
+
+
+        <div class="col-md-3 tr_block" >
+            Nacionalidad / Nacionality *<br>
+            <span class="tr_text">{{ reservaciones[0].cliente_nacionalidad   }}</span>
+        </div>  
+
+
+        <div class="col-md-3 tr_block" >
+            Ocupación / Ocupation<br>
+            <span class="tr_text">{{ cliente.cliente_profesion   }}</span>
+        </div> 
+
+        <div class="col-md-4 tr_block" >
+            Fecha Nacimiento / Birthday *<br>
+                 <span class="tr_text">{{ cliente.cliente_nacimiento   }}   ( {{ cliente.cliente_edad   }} ) </span>
+        </div>         
+
+        <div class="col-md-2 tr_block" >
+            Entrada / Arrival *<br>
+            <span class="tr_text">{{ reservaciones[0].reservacion_desde   }}</span>
+        </div>  
+
+
+
+        <div class="col-md-5 tr_block" >
+            procedencia / Origin *<br>
+            <span class="tr_text">{{ reservaciones[0].reservacion_origen   }}</span>
+        </div>  
+
+
+        <div class="col-md-5 tr_block" >
+            Destino / Destination<br>
+            <span class="tr_text">{{ reservaciones[0].reservacion_destino   }}</span>
+        </div> 
+
+        <div class="col-md-2 tr_block" >
+            Salida / Departure<br>
+            <span class="tr_text">{{ reservaciones[0].reservacion_hasta   }}</span>
+        </div>         
+
+
+
+        <div class="col-md-12 tr_block2" ></div>
+
+        <div class="col-md-6 tr_block1" >
+
+            <div class="col-md-12 tr_block" >
+                Forma de Pago<br>
+            <span class="tr_text">{{ reservaciones[0].reservacion_formapago  }}</span>
+            </div>    
+
+            <div class="col-md-12 tr_block4" >
+                Estoy de acuerdo en dejar mi habitación a las 12:00 Hrs.<br>
+                I agree to vacate my room by 12:00 Hrs. on this date.
+                <br><br><br>
+                <div style="text-align: right; with:100%"> Firma</div>
+                
+            </div>    
+        </div>
+
+
+
+        <div class="col-md-6 tr_block3" >
+
+            <div class="col-md-12 tr_block" >
+                Empresa / Company
+            </div>   
+
+
+            <div class="col-md-6 tr_block" >
+                RIF  / Company
+            </div>   
+
+            <div class="col-md-6 tr_block" >
+                Telefono / Telephone 
+            </div> 
+
+            <div class="col-md-12 tr_block" >
+                Dirección / Address
+            </div> 
+
+
+        </div>
+
+
+        <div class="col-md-12 tr_block5" >
+            Estoy conforme y me comprometo a cumplir y respetar las clausulas establecidas por la empresa las cuales aparecen al dorso..
+
+        </div> 
+
+
+
+
+    </div>   <!-- /.row -->
+
+
+
+</div>
+
+
+{% endblock %}
+
+{% block javascript %}
+<script src="lsdAjax.js"></script>  
+<script src="autocompletado.js"></script>  
+
+<script type="text/javascript">
+    var file = "reservacion02";
+    function registro_huesped() {
+        document.registro.submit();
+
+
+
+    }
+
+</script>
+<script>
+
+    function combo(id, cantidad) {
+        accion_lsd('combo', [id, cantidad], 'tabla_tarifa');
+    }
+
+    function combotarifa(id, dato) {
+
+        accion_lsd('combotarifa', [id, dato], 'tabla_tarifa');
+    }
+
+
+</script>
+{% endblock %}
+
+
+
+
+
+
+

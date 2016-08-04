@@ -1,0 +1,337 @@
+{% extends "base.html.twig" %}
+
+
+{% block content_wrapper %}
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+        <!-- general form elements -->    
+        <div class="box box-default collapsed-box box-solid">
+            <div class="box-header with-border" style="color:#2c3b41; background: white">
+
+                <div class="col-md-2">
+                    <strong>Localizador</strong><br>
+                    <span style="color:darkred; font-weight: 700; font-size: 20px;">
+                        {{ ctahuesped['ctabasicos'].ctahuesped_codigo }}  
+                    </span><br>
+                    {{ ctahuesped['ctagarantia'][0].garantiareservacion_estatus|raw }}
+                </div>
+
+                <div class="col-md-3">
+                    <strong>Responsable:    </strong><br>
+                    <span style="color:darkred; font-weight: 700; font-size: 16px;">
+                        {{ ctahuesped['ctabasicos'].cliente_apellido }} {{ ctahuesped['ctabasicos'].cliente_nombre}} 
+                </div>
+
+                <div class="col-md-2" style="text-align: left">
+                    <strong>Cargos</strong><br>
+                    <span style="color:red; font-weight: 700; font-size: 24px;">  
+                        {{ ctahuesped['ctabasicos'].ctahuesped_cargos }}
+                    </span>
+                </div>        
+
+
+                <div class="col-md-1" style="text-align: right">
+                    <strong>Impuestos</strong><br>
+                    <span style="color:darkred; font-weight: 700; font-size: 18px;">              
+                        {{ ctahuesped['ctabasicos'].ctahuesped_iva }}
+                    </span>
+                </div> 
+
+                <div class="col-md-2" style="text-align: right">
+                    <strong>Abono</strong><br>
+                    <span style="color:green; font-weight: 700; font-size: 24px;">  
+                        {{ ctahuesped['ctabasicos'].ctahuesped_abonos }}
+                    </span>
+                </div>   
+
+                <div class="col-md-2" style="text-align: right">
+                   <strong>Saldo deudor</strong><br>
+                    <span style="color:blue; font-weight: 700; font-size: 24px;">   
+                        {{ ctahuesped['ctabasicos'].ctahuesped_saldo }} 
+                    </span>
+                </div>                  
+
+
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                </div><!-- /.box-tools -->
+            </div><!-- /.box-header -->
+            <div class="box-body">
+
+                <table class="table table-hover">
+                    <tr>
+                        <td style="text-align:left;"><strong> Nombre Cliente: </strong>{{ ctahuesped['ctabasicos'].cliente_apellido }} {{ ctahuesped.cliente_nombre}} </td>
+                        <td style="text-align:left;"><strong> Número Documento: </strong>{{ ctahuesped['ctabasicos'].cliente_documento }} </td>      
+                        <td style="text-align:left;"><strong> Nacionalidad: </strong>{{ ctahuesped['ctabasicos'].cliente_nacionalidad }}  </td> 
+                        <td style="text-align:left;"><strong>Contacto </strong> {{ ctahuesped['ctabasicos'].cliente_correo }} / {{ ctahuesped.cliente_movil }}  </td>                               
+                    </tr> 
+                    <tr>
+                        <td style="text-align:left;"><strong> Tipo Credito: </strong>{{ ctahuesped['ctabasicos'].ctahuesped_tipocredito }}  </td>
+                        <td style="text-align:left;"><strong> Permiso:  </strong>{{ ctahuesped['ctabasicos'].ctahuesped_permiso }} </td>      
+                        <td style="text-align:left;"><strong> Emisión: </strong>{{ ctahuesped['ctabasicos'].ctahuesped_registro }}  </td> 
+                        <td style="text-align:left;"><strong>Observación: </strong> {{ ctahuesped['ctabasicos'].ctahuesped_observacion }} </td>                               
+                    </tr>          
+
+                    <tr>
+                        <td style="text-align:left;"><strong>Titular TDC:</strong>  {{ ctahuesped['ctabasicos'].garantiareservacion_nombretitular }}  </td>          
+                        <td style="text-align:left;"><strong>Número Documento:</strong> {{ ctahuesped['ctabasicos'].garantiareservacion_documentotitular }} </td>      
+                        <td style="text-align:left;"><strong>Banco  Emisor TDC:</strong>  {{ ctahuesped['ctabasicos'].garantiareservacion_banco }}  </td>         
+                        <td style="text-align:left;"><strong>Número Tarjeta:</strong>  {{ ctahuesped['ctabasicos'].garantiareservacion_numero }} </td>                              
+
+                    </tr> 
+                    <tr >
+
+                        <td style="text-align:left;"><strong>Codigo seguridad TDC:</strong> {{ ctahuesped['ctabasicos'].garantiareservacion_codigo }}  </td> 
+                        <td style="text-align:left;"><strong>Vencimiento TDC: </strong> {{ ctahuesped['ctabasicos'].garantiareservacion_vencimiento }} </td>   
+                        <td style="text-align:left" colspan="2"><strong>Observación TDC: </strong> {{ ctahuesped['ctabasicos'].garantiareservacion_observacion }} </td>                               
+                    </tr> 
+                </table>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+
+    </div><!--/.col (left) -->
+
+    <div class="col-md-12" style="padding-bottom: 10px">
+
+
+
+        <form role="form" name="formpago2" method="POST" action="index.php">
+
+            <div class="col-md-2">
+                <button  value="true"  type="submit"  name="iratrasctahuesped" class="btn btn-block btn-success btn-xs " style="font-weight: 700">
+                    <i class="fa fa-arrow-left"></i> IR ATRAS 
+                </button>   
+            </div>
+        </form>
+
+        <form role="form" name="formpago2" method="POST" action="index.php">
+
+            <div class="col-md-2">
+                <button  value="true"  type="submit"  name="iratrasctahuesped2" class="btn btn-block btn-primary btn-xs " style="font-weight: 700">
+                    <i class="fa fa-print"></i> IMPRIMIR FATURA  
+                </button>   
+            </div>
+        </form>
+
+    </div>
+
+
+
+</div>
+
+<div class="row">
+    <div class="col-md-7">
+        <div class="row" STYLE="background: white; padding: 10px">
+            <div class="col-md-12" style="text-align: center; font-size: 16px; font-weight: 700">
+                SENIAT <BR> SUIZOTEL S.A. 
+            </div>
+            <div class="col-md-12" style="text-align: center">
+                <i>  AVENIDAD SAN JUAN BOSCO EDIFICIO HOTEL CONTINENTAL ALTAMIRA PISO 1 OF ADMINISTRACION <BR>
+                    ALTAMIRA CARACAS ( CHACAO ) MIRANDA , ZONA POSTAL 1060</i> 
+            </div>          
+
+            <div class="col-md-3">FECHA:11 / 08 / 2015 </div> 
+            <div class="col-md-3">HORA: 4:30PM</div>
+            <div class="col-md-3">FACTURA N#: 0000001</div>
+
+            <div class="col-md-12" style="border-bottom: 1px solid black">
+
+            </div>
+
+            <div class="col-md-3" style="text-align: left; ">
+                RAZÓN SOCIAL:
+            </div>     
+
+            <div class="col-md-9" style="text-align: left;">
+                PEDRO ALEJANDRO ROJAS
+            </div>  
+
+            <div class="col-md-3" style="text-align: left;">
+                RIF / C.I.:
+            </div>     
+
+            <div class="col-md-9" style="text-align: left;">
+                V17727533
+            </div>
+
+
+            <div class="col-md-1" style="text-align: center; font-weight: 700">
+                CANT
+            </div>   
+
+            <div class="col-md-7" style="text-align: left; font-weight: 700">
+                DESCRIPCIÓN
+            </div>
+
+            <div class="col-md-2" style="text-align: left; font-weight: 700">
+                PRECIO
+            </div>
+
+
+            <div class="col-md-2" style="text-align: left; font-weight: 700">
+                IMPORTE
+            </div>
+            <div class="col-md-12" style="border-bottom: 1px solid black">
+
+            </div>
+            {% for r in listacargos %} 
+
+            <div class="col-md-1" style="text-align: center;">
+                01
+            </div>   
+
+            <div class="col-md-7" style="text-align: left;">
+                {{ r.detallereservacion_habitacion }}   {{ r.detallereservacion_servicio }} {{ r.detallereservacion_dia }}
+            </div>
+
+            <div class="col-md-2" style="text-align: right;">
+                {{ r.detallereservacion_precio |number_format(2, ',', '.') }}
+            </div>
+
+
+            <div class="col-md-2" style="text-align: right;">
+                {{ r.detallereservacion_precio |number_format(2, ',', '.') }}
+            </div>
+
+
+            {% endfor %}
+
+
+
+            <div class="col-md-10" style="text-align: right;">
+                BI G 12.00% 
+            </div>
+
+            <div class="col-md-2" style="text-align: right; border-top: 1px solid black">
+                {{ total.cargos |number_format(2, ',', '.')}}
+            </div>
+
+
+            <div class="col-md-10" style="text-align: right;">
+                IVA  G 12.00% 
+            </div>
+
+            <div class="col-md-2" style="text-align: right;">
+                {{ total.iva|number_format(2, ',', '.') }}
+            </div>
+
+
+
+
+            <div class="col-md-10" style="text-align: right;">
+                <strong> TOTAL </strong>
+            </div>
+
+            <div class="col-md-2" style="text-align: right;">
+                <strong>  {{ total.total |number_format(2, ',', '.')}}</strong>
+            </div>
+
+
+        </div>
+
+
+
+        <div class="box box-success"  style="display:none">
+            <div class="box-body">
+                <form role="form" name="formcargos" method="POST" action="index.php">
+                    <input name="tranferircargos"  value="true" type="hidden">
+
+                    <table id="example2" class="table table-bordered table-striped" style="font-size: 14px">
+                        <thead>
+                            <tr style="text-align:center;">
+                                <th style="width:60%">PRODUCTO / SERVICIO </th>
+
+                                <th style="width:20%; text-align:center;">ESTADIA</th> 
+                                <th  style="width:20%; text-align:center;" >COSTO</th>                          
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for r in listacargos %} 
+                            <tr>
+                                <td>
+
+                                    <span style="font-weight: 700; font-size: 18px" > {{ r.detallereservacion_habitacion }}  </span>     {{ r.detallereservacion_servicio }}   </td>
+
+                                <td style="text-align:center;">{{ r.detallereservacion_dia }} </td>  
+                                <td style="text-align: right; font-weight: 700; font-size: 18px">{{ r.detallereservacion_precio |number_format(0, ',', '.') }}</td>                        
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </form>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+
+
+
+    </div>
+    <div class="col-md-5">
+        <div class="box box-success  box-solid">
+            <div class="box-header with-border">
+                <h3 class="box-title">Datos de Facturación ( Empresa )</h3>
+                <input type="hidden" name="empresa_id" value="{{ cliente.empresa_id }}" >
+
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                </div><!-- /.box-tools -->
+            </div><!-- /.box-header -->
+            <div class="box-body">
+
+                <div class="col-md-6">  
+                    <div class="form-group" >
+                        <label class="control-label" >Nombre de la empresa</label>
+                        <input  value="{{ cliente.empresa_nombre }}"  name="nombre_empresa" type="text" class="form-control" placeholder="">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group" >
+                        <label class="control-label" >RIF</label>
+                        <input name="rif_empresa"  value="{{ cliente.empresa_rif }}" type="text" class="form-control" placeholder="">
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group" >
+                        <label class="control-label" >Dirección</label>
+                        <input name="direccion_empresa"   value="{{ cliente.empresa_direccion }}" type="text"  class="form-control" placeholder="">
+                    </div>
+                </div>  
+
+                <div class="col-md-8">
+                   <button  value="true"  type="submit"  name="iratrasctahuesped" class="btn btn-block btn-success btn-xs " style="font-weight: 700">
+                    <i class="fa fa-pencil"></i> ACTUALIZAR DATOS DE FACTURACIÓN
+                   </button> 
+                </div>   
+            
+                
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </div>
+</div>   <!-- /.row -->
+{% endblock %}
+
+{% block javascript %}
+
+<script>
+
+    function transferir_cargos() {
+
+        document.formcargos.submit();
+    }
+
+
+</script>
+
+
+{% endblock %}
+
+
+
+
+
+
+

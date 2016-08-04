@@ -1,0 +1,171 @@
+{% extends "base.html.twig" %}
+
+
+{% block content_wrapper %}
+
+<form role="form" method="POST" action="index.php">
+
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <div class="col-md-12" style="padding-bottom: 10px; padding-top: 10px">
+
+
+                            <div class="col-md-2">
+                                <button  value="true" type="submit"  name="iratrasroomservice" class="btn btn-block btn-success btn1" >
+                                    <i class="fa fa-arrow-left"></i>     Volver Atras
+                                </button>  
+                            </div>
+
+
+                            <div class="col-md-2">
+                                <button  value="true" type="submit"  class="btn btn-block btn-success btn1 " name="cargarproductoshab">
+                                    <i class="fa fa-plus-circle"></i>    Cargar Productos
+                                </button>
+                            </div>    
+
+                            <div class="col-md-8">
+                                <h2>Habitación #{{ habitacion.habitacion_nombre }} <sub>{{ habitacion.habitacion_categoria }}</sub></h2>
+                            </div>    
+
+
+
+                        </div>
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+
+        </div>
+
+
+
+    </div>
+
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+                <!-- general form elements -->
+
+                <div class="box">
+
+                    <div class="box-body">
+                        <table id="example1" class="table table-bordered table-striped tbl1" style='font-size: 14px'  >
+                            <thead>
+                                <tr>
+                                    <th style="width:100%" > <i class="fa fa-bed"> </i>  Producto </th>                                           
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for producto in productos %}   
+                                <tr>
+
+                                    <td>
+                                        <select name="cantidad[]" id="cantidad" class="form-control form-control3" style="width: 80px; color:black">
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select> 
+                                        <input name="producto[]" type="hidden" value=" {{ producto.id }}" name="productos[]">
+                                        &nbsp; &nbsp;  {{ producto.denominacion }}
+                                    </td>                 
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+
+                        </table>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+
+            </div><!--/.col (right) -->
+
+
+
+            <div class="col-md-6">
+                <!-- general form elements -->
+
+                <div class="box">
+
+                    <div class="box-body">
+                        <table id="example2" class="table table-bordered table-striped tbl1" style='font-size: 14px'  >
+                            <thead>
+                                <tr>
+                                    
+                                    <th style="text-align: center" > Cantidad </th>         
+                                    <th  > Producto </th>                                           
+                                    <th style="text-align: right" > Costo ( Bs. )</th>         
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for producto in productos2 %}   
+                                <tr>
+                           
+                                   
+                                    <td style="text-align: center" >
+                                        <b>{{ producto.producto_cantidad }}</b> 
+                                    </td> 
+
+                                    <td>
+                                        {{ producto.producto_denominacion }}
+                                    </td>
+
+                                    <td style="text-align: right" >
+                                        {{ producto.producto_monto|number_format(2, ',', '.') }}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+
+                        </table>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+
+            </div><!--/.col (right) -->
+
+
+
+
+
+
+
+        </div>   <!-- /.row -->
+    </section><!-- /.content -->
+</form>
+
+{% endblock %}
+
+{% block javascript %}
+<script src="plugins/datatables/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="plugins/datatables/dataTables.bootstrap.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function() {
+    var file = "ocupacion01";
+
+    $("#example1").dataTable();
+
+});
+</script>
+
+{% endblock %}
+
+
+
+
+
+
+

@@ -1,0 +1,102 @@
+ 
+
+
+#FORM CON HIDDEN PARA IDENTIFICACION DEL CONTROLADOR
+
+<form role="form" method="POST" action="index.php">
+<input type="hidden" name="busqueda_disponibilidad" value="true" >
+
+
+
+}else if($_POST['busqueda_disponibilidad']){
+
+/* variables entrada */
+$cantidad = $_POST['cantidad'];
+$categoria= $_POST['categoria'];
+/* proceso */
+    
+    
+/* salida */   
+
+
+
+
+MODELOS Y CLASES
+
+public function ver_habitaciones(){
+    $obj = new padreModelo();
+    $sql="select id from habitacion where estatu=true 
+    and categoria_id in (".$this->categoria.") ";
+    $data = $obj->ejecutar_query($sql);
+    
+    for($i=0;$i<count($data);$i++){
+    $res[$i]=$data[$i]['id'];
+    }    
+    return $res;    
+} 
+
+public function registro_cliente($dato){
+
+            $objeto2 = new padreModelo();
+
+
+            if($dato['cliente_id']>0){
+            $objeto2->setConfig('cliente',$dato['cliente_id']);
+            }else{
+            $objeto2->setConfig('cliente');                 
+            }
+           
+            $objeto2->add_data('nombre',$dato['nombre']);
+            $objeto2->add_data('apellido',$dato['apellido']); 
+            $objeto2->add_data('correo',$dato['correo']); 
+            $objeto2->add_data('direccion',$dato['direccion']); 
+            $objeto2->add_data('movil',$dato['movil']); 
+            $objeto2->add_data('telefono',$dato['telefono']); 
+            $objeto2->add_data('nacionalidad',$dato['nacionalidad']);             
+            $objeto2->add_data('usuario',7);             
+            $objeto2->ejecutar();
+
+} 
+
+
+<span class="label label-{{ habitacion.color }}">{{ habitacion.categoria }}</span>
+
+
+
+            
+            <div class="box box-success collapsed-box box-solid">
+                <div class="box-header with-border">
+                    <i class="fa fa-credit-card"></i> <h3 class="box-title"> Garantía de la reservación </h3>
+                    <input type="hidden" name="empresa_id" value="{{ reservaciones[0].empresa_id }}" >
+
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                    </div><!-- /.box-tools -->
+                </div><!-- /.box-header -->
+                <div class="box-body">
+
+       
+
+
+                </div><!-- /.box-body -->
+            </div>
+
+
+            <div class="box box-success">
+                <div class="box-header">
+                    <h3 class="box-title">Datos del Huesped Principal</h3>
+                </div>
+                <div class="box-body">
+                  
+
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+
+
+
+
+
+
+                        <div class="col-xs-12 top01" style="border-bottom: 2px #c5c5c5 solid; margin-bottom: 10px"  >                 
+
+                        </div>

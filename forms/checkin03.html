@@ -1,0 +1,248 @@
+{% extends "base.html.twig" %}
+
+
+{% block content_wrapper %}
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-success">
+                <div class="box-body table-responsive no-padding">
+                    <form role="form" method="POST" action="index.php">
+                        <input type="hidden" name="opciones_checkin" value="true" >
+                        <input type="hidden" name="reservacion_codigo" value="{{ reservaciones[0].ocupacion_reservacion_codigo }}" >
+                        <input type="hidden" name="reservacion_id" value="{{ reservaciones[0].ocupacion_reservacion_id }}" >                        
+                        <input type="hidden" name="ocupacion_id" value="{{ reservaciones[0].ocupacion_id }}" >                        
+                        <table class="table table-hover">
+                            <tr>
+                                <td style="text-align:left;">
+                                    <button  value="true" type="submit"  name="checkout" class="btn btn-block btn-danger " >
+                                        <i class="fa fa-check-square-o"></i>     Check Out
+                                    </button>   
+
+                                </td> 
+
+                                <td style="text-align:left;"> 
+
+                                    <button    value="true" type="submit"  name="editardatos" class="btn btn-block btn-primary ">
+                                        <i class="fa fa-pencil"></i>     Editar Datos Ocupación
+                                    </button>   
+
+                                </td>   
+
+                                <td style="text-align:left;">  
+                                    <button  value="true" type="submit" name="recalcularreservacion" class="btn btn-block btn-warning " >
+                                        <i class="fa  fa-history"></i>       Recalcular Ocupación
+                                    </button>
+                                </td>
+
+                            
+                            <td style="text-align:left;"> 
+                                <!--
+                                                                                                        <button  value="true" type="submit"  class="btn btn-block btn-success ">
+                                                                                                            <i class="fa fa-times"></i>       En proceso
+                                                                                                        </button>   
+                                -->
+
+                                <a   name="recalcular" class="btn btn-block btn-success " >
+                                    <i class="fa fa-times"></i>     En proceso
+                                </a>
+                            </td>      
+                        </table>
+
+                    </form>
+
+                </div>        
+            </div>             
+
+            <div class="box box-warning">
+
+                <div class="box-body table-responsive no-padding">
+
+                    <table class="table table-condensed" style="font-weight: bold">
+                        <tr>
+                            <td style="font-size: 20px; " >  
+                                <i class="fa fa-tag"></i> <strong>{{ reservaciones[0].reservacion_codigoid }}</strong> </td>
+
+                            <td style="font-size: 18px; " >   
+                                <i class="fa fa-bed"> </i>   
+                                <strong>
+                                    {{ reservaciones[0].habitacion_nombre }} 
+                                    {{ reservaciones[0].habitacion_categoria }}  
+                                </strong>  
+                            </td> 
+
+                            <td style="font-size: 20px; " > 
+                                <i class="fa fa-calendar"></i> 
+                                <i class="fa fa-check-square-o"> </i> 
+                                {{ reservaciones[0].reservacion_desde }} &nbsp; 4:05PM
+                            </td>                           
+
+                            <td style="font-size: 20px;" >   
+                                <i class="fa fa-calendar"></i> 
+                                <i class="fa fa-arrow-down"> </i> 
+                                {{ reservaciones[0].ocupacion_fechadesde }} &nbsp;&nbsp;&nbsp;&nbsp;
+                            </td>                              
+                            <td style="font-size: 20px;" > 
+                                <i class="fa fa-calendar"></i>
+                                <i class="fa fa-arrow-up"> </i>  
+                                {{ reservaciones[0].ocupacion_fechahasta }} &nbsp;&nbsp;&nbsp;&nbsp; 
+                            </td>
+
+                            <td style="font-size: 24px;" >  
+                                3  <i class="fa fa-users"> </i>   &nbsp;&nbsp; 
+                                1  <i class="fa fa-car"> </i> 
+                            </td>                        
+                        </tr>
+                    </table>
+
+                    <!--
+                    <table class="table table-hover">
+                        <tr>
+                            <th style="text-align:left;width:150px">Codigo</th>      
+                            <th style="text-align:left;width:150px">check In</th>                               
+                            <th style="text-align:left;width:150px">Fecha ingreso</th>          
+                            <th style="text-align:left;width:150px">Fecha salida</th>                               
+                            <th style="text-align:left;width:150px">Habitación</th>          
+                            <th style="text-align:left;width:150px">Categoria</th> 
+                            <th style="text-align:left;width:150px">Tarifa</th>                               
+                        </tr> 
+
+                        {% for reservacion in reservaciones %}
+                        <tr >
+                            <td style="text-align:left"> {{ reservacion.reservacion_codigo }}-{{ reservacion.reservacion_id }} </td>  
+                            <td style="text-align:left"> {{ reservacion.reservacion_desde }}  </td>                              
+                            <td style="text-align:left"> {{ reservacion.reservacion_desde }} </td> 
+                            <td style="text-align:left"> {{ reservacion.reservacion_hasta }} </td>                               
+                            <td style="text-align:left"> {{ reservacion.reservacion_nombre }} </td> 
+                            <td style="text-align:left"> {{ reservacion.reservacion_categoria }} </td> 
+                            <td style="text-align:left"> {{ reservacion.reservacion_tarifa }} </td> 
+
+
+                        </tr> 
+                        {% endfor %}       
+                    </table>
+                    -->
+
+                </div>       
+
+
+                <!-- /.box-body -->
+            </div><!-- /.box -->            
+
+            <!-- Form Element sizes -->
+            <div class="box box-success" >
+                <div class="box-header">
+                    <h3 class="box-title"  style="font-weight: 500; color:darkgreen">     
+                        <i class="fa fa-user"></i>  Datos del Huesped Principal
+                    </h3>
+
+
+
+                </div>
+
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tr>
+                            <td style="text-align:left;"><strong> Nombre Cliente: </strong>{{ reservaciones[0].cliente_apellido }} {{ reservaciones[0].cliente_nombre}} </td>
+                            <td style="text-align:left;"><strong> Número Documento: </strong>{{ reservaciones[0].cliente_documento }} </td>      
+                            <td style="text-align:left;"><strong> Nacionalidad: </strong>{{ reservaciones[0].cliente_nacionalidad }}  </td> 
+                            <td style="text-align:left;"><strong>Correo Electronico: </strong> {{ reservaciones[0].cliente_correo }}  </td>                               
+                        </tr> 
+                        <tr>
+                            <td style="text-align:left;"><strong> Edad Cliente: </strong>{{ reservaciones[0].cliente_edad }} </td>
+                            <td style="text-align:left;"><strong> Profesión </strong>{{ reservaciones[0].cliente_profesion }} </td>      
+                            <td style="text-align:left;"><strong> Edo. Civil: </strong>{{ reservaciones[0].cliente_civil }}    </td> 
+                            <td style="text-align:left;"><strong>Tipo Cliente: </strong> {{ reservaciones[0].cliente_tipocliente }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>  Genero: </strong> {{ reservaciones[0].cliente_genero }} </td>                               
+                        </tr>                         
+                        <tr >
+
+                            <td style="text-align:left;"><strong>Número Teléfonico:</strong> {{ reservaciones[0].cliente_telefono }}  </td> 
+                            <td style="text-align:left;"><strong>Movil: </strong>  {{ reservaciones[0].cliente_movil }} </td>                              
+                            <td style="text-align:left;" colspan="2"><strong>Dirección: </strong> {{ reservaciones[0].cliente_direccion }} </td> 
+                        </tr>    
+                        <tr >
+                            <td style="text-align:left;"> <i class="fa fa-building-o"></i>  <strong>Empresa:</strong>  {{ reservaciones[0].empresa_nombre }} </td> 
+                            <td style="text-align:left;"><strong>Rif:</strong>  {{ reservaciones[0].empresa_rif }}  </td> 
+                            <td style="text-align:left;" colspan="2"><strong>Dirección:</strong>  {{ reservaciones[0].empresa_direccion }} </td>                              
+                        </tr>   
+                    </table>
+
+                </div>        
+            </div>  
+
+
+
+
+            <div class="box box-success">           
+
+                <div class="box-header">
+                    <h3 class="box-title"  style="font-weight: 500; color:darkgreen">  <i class="fa fa-credit-card"></i> Garantía de la reservación</h3>
+                </div>   
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tr>
+                            <td style="text-align:left;"><strong>Nombre Titular:</strong>  {{ reservaciones[0].garantiareservacion_nombretitular }}  </td>          
+                            <td style="text-align:left;"><strong>Número Documento:</strong> {{ reservaciones[0].garantiareservacion_documentotitular }} </td>      
+                            <td style="text-align:left;"><strong>Banco  Emisor TDC:</strong>  {{ reservaciones[0].garantiareservacion_banco }}  </td>         
+                            <td style="text-align:left;"><strong>Número Tarjeta:</strong>  {{ reservaciones[0].garantiareservacion_numero }} </td>                              
+
+                        </tr> 
+                        <tr >
+
+                            <td style="text-align:left;"><strong>Codigo seguridad:</strong> {{ reservaciones[0].garantiareservacion_codigo }}  </td> 
+                            <td style="text-align:left;"><strong>Vencimiento: </strong> {{ reservaciones[0].garantiareservacion_vencimiento }} </td>   
+                            <td style="text-align:left"><strong>Observación: </strong> {{ reservaciones[0].garantiareservacion_observacion }} </td>                               
+                        </tr> 
+
+                    </table>
+
+                </div>       
+            </div>   
+
+            <!-- /.box-body -->
+
+
+            <!-- Form Element sizes -->
+
+
+
+
+
+
+
+
+        </div><!--/.col (left) -->
+        <!-- right column -->
+
+    </div>   <!-- /.row -->
+</section><!-- /.content -->
+
+
+{% endblock %}
+
+{% block javascript %}
+
+
+<script type="text/javascript">
+
+    function registro_huesped() {
+        document.registro.submit();
+
+
+
+    }
+
+</script>
+
+{% endblock %}
+
+
+
+
+
+
+

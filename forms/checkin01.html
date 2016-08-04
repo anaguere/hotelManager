@@ -1,0 +1,568 @@
+{% extends "base.html.twig" %}
+
+
+{% block content_wrapper %}
+
+
+
+<div class="row">
+
+    <div class="col-md-12">
+
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+                    <div class="col-md-12" style="padding-bottom: 10px; padding-top: 10px">
+
+                        <form role="form" name="formpago2" method="POST" action="index.php">
+
+                            <div class="col-md-2">
+                                <button  value="true"  type="submit"  name="iratrasreservacion" class="btn btn-block btn-success btn1 " style="font-weight: 700">
+                                    <i class="fa fa-arrow-left"></i> Ir Atrás
+                                </button>   
+                            </div>
+                        </form>
+
+                        <div class="col-md-2">
+                            <button  name="" type="button"  onclick="boton_formcheckin()" class="btn btn-block btn-success  btn1 " style="width: 200px; float:left">
+                                <i class="fa fa-check-square-o"></i>   Confirmar Check In
+                            </button> 
+                        </div>
+
+
+                    </div>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+
+    </div>
+
+
+
+</div>
+
+<form role="form" method="POST" name="formcheckin" action="index.php">
+    <input type="hidden" name="checkinreservacion" value="true">
+    <section class="content">
+
+        <div class="row">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs pull-left" style="font-weight: 700; width: 100%  ">
+
+                    <li class="active"  ><a href="#tab_1-1" data-toggle="tab">Acerca de la Reservación</a></li>
+                    <li><a href="#tab_3-2" data-toggle="tab">Garantía</a></li>
+                    <li><a href="#tab_3-1" data-toggle="tab">Facturación</a></li>
+                    <li><a href="#tab_3-3" data-toggle="tab">Acompañantes</a></li>
+
+                </ul>
+
+                <div class="tab-content" style="padding: 5px; padding-top:20px">
+                    <div class="tab-pane  active" id="tab_1-1" style="height:350px; margin-top: 10px; border-color: white" >
+
+                        <div class="col-xs-2">
+                            <div class="form-group" >
+                                <label class="control-label control-label2"  >Localizador</label>
+                                <input style="font-weight: 700" readonly="readonly" name=""  value="{{reservaciones[0].codigo_id }} " type="text" class="form-control form-control3"  >
+                            </div>
+                        </div>    
+
+                        <div class="col-xs-2">
+                            <div class="form-group" >
+                                <label class="control-label control-label2"  >Llegada</label>
+                                <input  name=""  value="{{ reservaciones[0].reservacion_desde }} " type="text" class="form-control form-control3" readonly="readonly" >
+                            </div>
+                        </div>             
+
+
+                        <div class="col-xs-2">
+                            <div class="form-group" >
+                                <label class="control-label control-label2"  >Salida</label>
+                                <input  name=""  value="{{ reservaciones[0].reservacion_hasta }}" type="text" class="form-control form-control3" readonly="readonly" >
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-xs-2">
+                            <div class="form-group" >
+                                <label class="control-label control-label2"  >Noches</label>
+                                <input  name="nacionalidad" value="3" type="text" class="form-control form-control3" readonly="readonly" >
+                            </div>
+                        </div>  
+
+
+                        <div class="col-xs-2">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" > Origen </label>
+                                <input id="origen"  name="origen" type="text"   value="{{ reservaciones[0].reservacion_origen }} " class="form-control form-control3" >
+                            </div>
+                        </div> 
+
+                        <div class="col-xs-2">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" >Destino</label>
+                                <input  id="destino" name="destino"   type="text"  value="{{ reservaciones[0].reservacion_destino }} " class="form-control form-control3"  >
+                            </div>
+                        </div>               
+
+
+
+
+                        <div class="col-xs-2 top01" >
+                            <div class="form-group" >
+                                <label class="control-label control-label2"  >C.I / Passport </label>
+                                <input name="documento" value="{{ reservaciones[0].cliente_documento }}" type="text" class="form-control form-control2"  >
+                            </div>
+                        </div>             
+
+
+                        <div class="col-xs-2 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2"  >Nombres</label>
+                                <input name="nombre"  value="{{ reservaciones[0].cliente_nombre }}" type="text" class="form-control form-control2"  >
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" >Apellidos</label>
+                                <input name="apellido" value="{{ reservaciones[0].cliente_apellido }}" type="text" class="form-control form-control2"  >
+                            </div>
+
+                        </div>  
+
+
+                        <div class="col-xs-2 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2"  >Nacionalidad</label>
+                                <input  name="nacionalidad" value="{{ reservaciones[0].cliente_nacionalidad }}" type="text" class="form-control form-control2"  >
+                            </div>
+                        </div>  
+
+                        <div class="col-xs-2 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2"  >Idioma</label>
+                                <input id="idioma" name="idioma"  value="{{ reservaciones[0].cliente_idioma }}" type="text" class="form-control form-control2"  >
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2"  >Pais</label>
+                                <input id="pais" name="pais"  value="{{ reservaciones[0].cliente_pais }}" type="text" class="form-control form-control2"  >
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2"  >VIP</label>
+                                <input  id="vip" name="vip"  value="{{ reservaciones[0].cliente_vip }}" type="text" class="form-control form-control2"  >
+                            </div>
+                        </div>  
+
+                        <div class="col-xs-2 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" >Email</label>
+                                <input  name="correo" value="{{ reservaciones[0].cliente_correo }}"  type="text" class="form-control form-control2"  >
+                            </div> 
+                        </div>
+
+
+                        <div class="col-xs-2 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" >Teléfono</label>
+                                <input  name="telefono" value="{{ reservaciones[0].cliente_telefono }}"  type="text" class="form-control form-control2"  >
+                            </div>
+                        </div> 
+
+                        <div class="col-xs-2 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2"  >Ciudad</label>
+                                <input name="ciudad"  value="{{ reservaciones[0].cliente_ciudad }}" type="text" class="form-control form-control2"  >
+                            </div>
+                        </div>
+
+                        <div class="col-xs-4 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2">Dirección</label>
+                                <input  name="direccion" value="{{ reservaciones[0].cliente_direccion }}" type="text"  class="form-control form-control2"  >
+                            </div>
+                        </div> 
+
+
+
+                        <div class="col-xs-2 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" >Tipo Documento</label>
+                                {{ combo.tipodocumento|raw }}
+                            </div>
+                        </div>
+
+
+                        <div class="col-xs-2 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" >Genero</label>
+                                {{ combo.genero|raw }}
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" >Estado Civil</label>
+                                {{ combo.civil|raw }}
+                            </div>
+                        </div>  
+
+                        <div class="col-xs-2 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" >Fecha Nacimiento</label>
+                                <input  name="nacimiento" id="nacimiento" value="{{ reservaciones[0].cliente_nacimiento }}" type="text" class="form-control form-control2" placeholder="DD/MM/YYYY">
+                            </div>
+                        </div>   
+
+                        <div class="col-xs-2 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" > Profesión </label>
+                                <input id='profesion'  name="profesion" value="{{ reservaciones[0].cliente_profesion }}"  type="text" class="form-control form-control2" placeholder="Profesión">
+                            </div>
+                        </div> 
+
+                        <div class="col-xs-2 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" >Motivo del Viaje</label>
+                                {{ combo.motivoviaje|raw }}
+                            </div>
+                        </div>  
+
+                        <div class="col-xs-2 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" >Medio de Reserva</label>
+                                <input  id="medioreservacion"  name="medioreservacion" value="{{ reservaciones[0].reservacion_medio }}" type="text" class="form-control form-control3" placeholder="">
+                            </div> 
+                        </div>
+
+                        <div class="col-xs-2 top01">
+
+                            <div class="form-group" >
+                                <label class="control-label control-label2" >Forma de Pago</label>
+                                {{ combo.formapago|raw }}
+                            </div>
+                        </div>  
+
+                        <div class="col-xs-2 top01">
+
+                            <div class="form-group" >
+                                <label class="control-label control-label2" >Cta Cliente Permiso </label>
+                                {{ combo.permiso|raw }}
+                            </div>
+                        </div> 
+
+                        <div class="col-xs-2 top01">
+
+                            <div class="form-group" >
+                                <label class="control-label control-label2" >Tipo Credito </label>
+                                {{ combo.tipocredito|raw }}
+                            </div>
+                        </div>   
+
+
+
+                        <div class="col-xs-4 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" >Observación</label>
+                                <input name="clienteobservacion" value="{{ reservaciones[0].cliente_observacion }}" type="text" class="form-control  form-control2" placeholder="">
+                            </div>
+                        </div>  
+
+
+                    </div><!-- /.tab-pane -->                 
+
+                    <div class="tab-pane" id="tab_3-2"  style="height:300px; border-color: white" >
+
+                        <div class="col-xs-3 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" >ID Titular TDC</label>
+                                <input   id="documento_titular" value="{{ reservaciones[0].garantia_documento_titular }}" name="documento_titular" type="text" class="form-control form-control2" placeholder="">
+                            </div>
+                        </div>   
+
+
+                        <div class="col-xs-3 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" >Nombre Titular TDC</label>
+                                <input   name="nombre_titular" value="{{ reservaciones[0].garantia_nombre_titular }}" type="text" class="form-control form-control2" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" >Banco Emisor TDC</label>
+                                <input id="banco" name="banco" value="{{ reservaciones[0].garantia_banco }}" type="text" class="form-control form-control2" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-1 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" >Vence</label>
+                                <input   id="vencimiento" name="vencimiento" value="{{ reservaciones[0].garantia_vencimiento }}" type="text" class="form-control form-control2" placeholder="MM/AA">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" > TDC N°</label>
+                                <input   id="numero" name="numero"  value="{{ reservaciones[0].garantia_numero }}"  type="text" class="form-control form-control2" placeholder="">
+                            </div>
+                        </div>                 
+
+                        <div class="col-xs-1 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" >COD TDC</label>
+                                <input id="codigo" name="codigo" value="{{ reservaciones[0].garantia_codigo }}"  type="text" class="form-control form-control2" placeholder="">
+                            </div>
+                        </div>
+
+
+                        <div class="col-xs-3 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" > N° Referencia</label>
+                                <input name="referencia" value="{{ reservaciones[0].garantiareservacion_referencia }}"  type="text" class="form-control form-control2" placeholder="">
+                            </div>
+                        </div>
+
+
+                        <div class="col-xs-3 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" > Tipo Garantía</label>
+                                <input  id="tipogarantia" name="tipogarantia" value="{{ reservaciones[0].garantiareservacion_tipogarantia }}"  type="text" class="form-control form-control2" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" >Observación</label>
+                                <input name="garantiaobservacion" value="{{ reservaciones[0].garantia_observacion }}"  type="text" class="form-control form-control2" placeholder="">
+                            </div>
+                        </div>
+
+
+                    </div><!-- /.tab-pane -->
+
+                    <div class="tab-pane" id="tab_3-1"  style="height:300px; border-color: white" >
+                        <div class="col-md-4 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" >Nombre de la empresa</label>
+                                <input  value="{{ reservaciones[0].empresa_nombre }}"  name="nombre_empresa" type="text" class="form-control form-control2" placeholder="">
+                            </div>
+
+                        </div>
+                        <div class="col-md-2 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" >RIF</label>
+                                <input  value="{{ reservaciones[0].empresa_rif }}"  name="rif_empresa" type="text" class="form-control form-control2" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 top01">
+                            <div class="form-group" >
+                                <label class="control-label control-label2" >Dirección</label>
+                                <input  value="{{ reservaciones[0].empresa_direccion }}"  name="direccion_empresa" type="text" class="form-control form-control2" placeholder="">
+                            </div>
+                        </div>  
+                    </div><!-- /.tab-pane -->
+
+
+                    <div class="tab-pane" id="tab_3-3"  style="height:300px; border-color: white" >
+
+                        <div class="col-md-7">
+
+                            <div id="div02">
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group" >
+                                            <label class="control-label control-label2"  >N° Documento</label>
+                                            <input   id="acompanante_documento"  name="acompanante_documento" type="text" class="form-control form-control2" placeholder="N Documento Identidad">   
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" >
+                                            <label class="control-label control-label2"  >Nombre Completo</label>
+                                            <input   id="acompanante_nombre"  name="acompanante_nombre" type="text" class="form-control form-control2" placeholder="Nombre Completo">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" >
+                                            <label class="control-label control-label2"  >Nacimiento</label>
+                                            <input  id="acompanante_nacimiento"  name="acompanante_nacimiento" type="text" class="form-control form-control2" placeholder="dd/mm/yyyy">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group" >
+                                            <label class="control-label control-label2"  >Genero</label>
+                                            <input  id="acompanante_genero"  name="acompanante_genero" type="text" class="form-control form-control2" placeholder="M / F">              
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group" >
+                                            <label class="control-label control-label2"  >Origen</label>
+                                            <input  id="acompanante_destino"  name="acompanante_destino" type="text" class="form-control form-control2" placeholder="">              
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group" >
+                                            <label class="control-label control-label2"  >Destino</label>
+                                            <input  id="acompanante_destino"  name="acompanante_destino" type="text" class="form-control form-control2" placeholder="">              
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group" >
+                                            <label class="control-label control-label2"  >Nacionalidad</label>
+                                            <input  id="acompanante_nacionalidad"  name="acompanante_nacionalidad" type="text" class="form-control form-control2" placeholder="">              
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group" >
+                                            <label class="control-label control-label2"  >Ocupación</label>
+                                            <input  id="acompanante_ocupacion"  name="acompanante_ocupacion" type="text" class="form-control form-control2" placeholder="">              
+                                        </div>
+                                    </div> 
+                                    <div class="col-md-4">
+                                        <div class="form-group" >
+                                            <label class="control-label control-label2"  >Teléfono</label>
+                                            <input  id="acompanante_telefono"  name="acompanante_telefono" type="text" class="form-control form-control2" placeholder="">              
+                                        </div>
+                                    </div>                                        
+
+                                    <div class="col-md-12">
+                                        <div class="form-group" >
+                                            <br>
+                                            <a href="javascript:registro()"  class="btn btn-block btn-success btn-xs  " style="width: 200px; float:left">
+                                                Registrar Acompañante 
+                                            </a>  
+                                        </div>
+                                    </div>                                  
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            <div id="div01">
+                                {{ acompanante|raw }}
+                            </div>
+                        </div>                  
+                    </div>
+
+                </div><!-- /.tab-content -->
+            </div><!-- nav-tabs-custom -->  
+        </div>
+
+    </section><!-- /.content -->
+
+</form>
+{% endblock %}
+
+{% block javascript %}
+
+
+<script src="lsdAjax.js"></script>  
+<script src="autocompletado.js"></script> 
+<script>
+
+                                function validaciones() {
+                                    $("#acompanante_nacimiento").inputmask("dd/mm/yyyy", {"placeholder": ""});
+                                }
+
+
+                                $("#nacimiento").inputmask("dd/mm/yyyy", {"placeholder": ""});
+                                $("#acompanante_nacimiento").inputmask("dd/mm/yyyy", {"placeholder": ""});
+
+
+
+                                function registro() {
+
+
+                                    nombre = $("#acompanante_nombre").val();
+                                    documento = $("#acompanante_documento").val();
+                                    nacimiento = $("#acompanante_nacimiento").val();
+                                    genero = $("#acompanante_genero").val();
+
+                                    $("#acompanante_nombre").val('');
+                                    $("#acompanante_documento").val('');
+                                    $("#acompanante_nacimiento").val('');
+                                    $("#acompanante_genero").val('');
+
+                                    accion_lsd('registroacompanantes', [nombre, documento, genero, nacimiento], 'div01');
+
+                                }
+
+
+
+                                function editar(documento) {
+
+
+                                    if (validarfecha($("#acompanante_nacimiento").val())) {
+
+                                    } else {
+
+                                        alert('Formato de fecha invalido DD/MM/YYYY');
+
+                                    }
+
+
+                                    $("#acompanante_nombre").val('');
+                                    $("#acompanante_documento").val('');
+                                    $("#acompanante_nacimiento").val('');
+                                    $("#acompanante_genero").val('');
+
+                                    accion_lsd('edicionacompanantes', [documento], 'div02');
+
+                                }
+
+                                function eliminar(documento) {
+
+                                    $("#acompanante_nombre").val('');
+                                    $("#acompanante_documento").val('');
+                                    $("#acompanante_nacimiento").val('');
+                                    $("#acompanante_genero").val('');
+
+                                    accion_lsd('eliminaracompanantes', [documento], 'div01');
+                                }
+
+
+
+                                function boton_formcheckin() {
+
+                                    if (!(($('#origen').val() == "") || ($('#destino').val() == "") || ($('#nacimiento').val() == "")  || ($('#medioreservacion').val() == "")     )) {
+
+
+                                        if (confirm("¿Seguro que desee proceder a realizar checkin ? ")) {
+                                           document.formcheckin.submit();
+                                        }
+
+
+                                    } else {
+                                        alert("Verifique los datos \n -Destino \n -Origen \n -Fecha de Nacimiento \n -Medio Reservación  ");
+                                    }
+  
+                                }
+
+
+</script>
+
+{% endblock %}
+
+
+
+
+
+
+

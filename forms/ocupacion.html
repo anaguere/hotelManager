@@ -1,0 +1,177 @@
+{% extends "base.html.twig" %}
+
+
+{% block content_wrapper %}
+
+<section class="content">
+  <div class="row">
+    <!-- left column -->
+    <div class="col-md-6">
+      <!-- general form elements -->
+      <div class="box box-primary">
+        <div class="box-header">
+          <h3 class="box-title">Filtros de la busqueda</h3>
+        </div><!-- /.box-header -->
+        <!-- form start -->
+        <form role="form" method="POST" action="index.php">
+        <input type="hidden" name="busqueda_disponibilidad" value="true" >
+          <div class="box-body">
+           <div class="col-md-4">
+            <div class="form-group" >
+              <label class="control-label" >Fecha Entrada</label>
+              <input value="{{ dato.desde }}" type="text" class="form-control" placeholder="dd/mm/aaaa" name="desde">
+            </div>
+
+          </div>
+          <div class="col-md-4">
+            <div class="form-group" >
+              <label class="control-label" >Fecha Salida</label>
+              <input value="{{ dato.hasta }}" type="text" class="form-control" placeholder="dd/mm/aaaa" name="hasta">
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <div class="checkbox">
+                <label>
+                  <input name="sp" type="checkbox" value="1" {{ dato.sp }} />
+                  Suites Plus                      
+                </label>
+              </div>
+
+              <div class="checkbox">
+                <label>
+                  <input  name="pk" type="checkbox" value="2" {{ dato.pk }}/>
+                  Plus King
+                </label>
+              </div>
+
+              <div class="checkbox">
+                <label>
+                  <input name="pq" type="checkbox" value="3" {{ dato.pq }} />
+                  Plus Queen
+                </label>
+              </div>
+
+
+            </div>
+          </div>                           
+
+
+        </div><!-- /.box-body -->
+
+        <div class="box-footer">
+          <button type="submit" class="btn btn-primary ">Buscar</button>
+        </div>
+      </form>
+    </div><!-- /.box -->
+
+    <div class="box box-success">
+     <form role="form" method="POST" action="index.php">
+     <input type="hidden" name="reservacion_resumen" value="true" >
+     <div class="box-header">
+
+        <div class="col-md-7">
+          <h3 class="box-title">Resumen Habitaciones disponibles
+          </h3>
+        </div>
+        <div class="col-md-3">
+          <button type="submit" class="btn btn-success ">Realizar reservaciones</button>
+        </div>   
+      </div>
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+          <tr>
+            <th style="text-align:center;width:100px">Reservar</th>          
+            <th style="text-align:center;width:100px">Disponibles</th>
+            <th>Categoria</th>
+          </tr>
+
+{% for habitacion in resumen %}
+  
+          <tr>
+            <td style="text-align:center; font-size:18px">
+              <input type="hidden" name="categoria[]" value="{{ habitacion.categoria_id }}" >
+              <input  style="text-align:center;width:100px;font-size:18px"  class="form-control"  name="cantidad[]" 
+                      type="text" value="0">
+            </td>          
+            <td style="text-align:center; font-size:18px">{{ habitacion.cantidad }}</td>
+            <td><span class="label label-{{ habitacion.color }}">{{ habitacion.categoria }}</span></td>            
+          </tr>
+ {% endfor %}
+        </table>
+      </div>
+      </form>
+    </div><!-- /.box -->
+
+  </div>
+
+
+    <div class="col-md-6">
+
+
+    <!-- Form Element sizes -->
+    <div class="box box-success">
+      <div class="box-header">
+
+        <div class="col-md-7">
+          <h3 class="box-title">Detalle Habitaciones disponibles
+          </h3>
+        </div>
+        <div class="col-md-3">
+          <button type="submit" class="btn btn-primary ">Realizar reservaciones</button>
+        </div>   
+      </div>
+
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+          <tr>
+            <th>Acción</th>
+            <th>Habitación</th>
+            <th>Tipo</th>
+          </tr>
+
+{% for habitacion in detalle %}
+  
+          <tr>
+            <td>  <input value="{{ habitacion.habitacion_id }}" type="checkbox" class="minimal"/> </td>
+            <td>{{ habitacion.nombre|e }}</td>
+            <td><span class="label label-{{ habitacion.color }}">{{ habitacion.categoria|e }}</span></td>
+          </tr>
+ {% endfor %}
+        </table>
+      </div>
+    </div><!-- /.box -->
+  </div>
+
+
+
+
+
+
+
+
+</div>   <!-- /.row -->
+
+</section><!-- /.content -->
+
+
+
+
+{% endblock %}
+
+{% block javascript %}
+
+
+<script src="lsdAjax.js"></script>  
+
+<script>
+
+function test(){    
+  accion_lsd('test',['lsdrojas'],'div01');   
+}
+
+</script>
+
+ {% endblock %}
+

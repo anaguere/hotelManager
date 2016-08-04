@@ -1,0 +1,381 @@
+{% extends "base.html.twig" %}
+
+
+{% block content_wrapper %}
+
+<form role="form" method="POST" action="index.php">
+    <section class="content">
+        <div class="row" style="padding-bottom: 7px">          
+            <div class="col-md-2" >
+                <button  value="true" type="submit"  name="registrarctahuesped" class="btn btn-block btn-danger btn-xs " >
+                    <i class="fa fa-plus"></i> Registrar Nueva Cuenta Huesped  
+                </button>
+            </div>
+          
+        </div>
+
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="box box-success  box-solid">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Nueva Cuenta Huesped</h3>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                        </div><!-- /.box-tools -->
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+
+
+                        <div class="col-xs-2">
+                            <div class="form-group" >
+                                <label class="control-label" >N° Documento</label>
+                                <input  name="documento" value="{{ cliente.cliente_documento }}"  type="text" class="form-control" placeholder="Cédula o Pasaporte">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2"><br>
+                            <button  value="true" type="submit"  name="verificarctahuesped" class="btn btn-block btn-primary " >
+                                <i class="fa fa-eye"></i> Verificar Registro 
+                            </button>
+                        </div>
+
+                        <div class="col-xs-2" >
+                            <div class="form-group" >
+                                <label class="control-label" >Nombres</label>
+                                <input name="nombre" value="{{ cliente.cliente_nombre }}" type="text" class="form-control" placeholder="Nombres">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2">
+                            <div class="form-group" >
+                                <label class="control-label" >Apellidos</label>
+                                <input name="apellido" value="{{ cliente.cliente_apellido }}" type="text" class="form-control" placeholder="Apellidos">
+                            </div>
+                        </div>  
+
+                        <div class="col-xs-2">
+                            <div class="form-group" >
+                                <label class="control-label" >Tipo Documento</label>
+                                {{ combo.tipodocumento|raw }}
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-xs-2">
+                            <div class="form-group" >
+                                <label class="control-label" >Genero</label>
+                                {{ combo.genero|raw }}
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-xs-2">
+                            <div class="form-group" >
+                                <label class="control-label" >Estado Civil</label>
+                                {{ combo.civil|raw }}
+                            </div>
+                        </div>  
+
+                        <div class="col-xs-2">
+                            <div class="form-group" >
+                                <label class="control-label" >Fecha Nacimiento</label>
+                                <input  name="nacimiento" id="nacimiento" value="{{ cliente.cliente_nacimiento }}" type="text" class="form-control" placeholder="DD/MM/YYYY">
+                            </div>
+                        </div>   
+
+                        <div class="col-xs-2">
+                            <div class="form-group" >
+                                <label class="control-label" >Teléfono</label>
+                                <input  name="telefono" value="{{ cliente.cliente_telefono }}"  type="text" class="form-control" placeholder="0000-000 00 00">
+                            </div>
+                        </div> 
+
+                        <div class="col-xs-2">
+                            <div class="form-group" >
+                                <label class="control-label" >Movil</label>
+                                <input name="movil" value="{{ cliente.cliente_movil }}"  type="text" class="form-control" placeholder="0000-000 00 00">
+                            </div>
+                        </div> 
+
+                        <div class="col-xs-2">
+                            <div class="form-group" >
+                                <label class="control-label" >Nacionalidad</label>
+                                <input   name="nacionalidad" value="{{ cliente.cliente_nacionalidad }}" type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>  
+
+                        <div class="col-xs-2" >
+                            <div class="form-group" >
+                                <label class="control-label" >Tipo CLiente</label>
+                                {{ combo.tipocliente|raw }}
+                            </div>
+                        </div>                     
+
+                        <div class="col-xs-3">
+                            <div class="form-group" >
+                                <label class="control-label" >Correo Electronico </label>
+                                <input  name="correo" value="{{ cliente.cliente_correo }}" type="text"  class="form-control" placeholder="">
+                            </div>
+                        </div>                         
+
+                        <div class="col-xs-5">
+                            <div class="form-group" >
+                                <label class="control-label" >Dirección</label>
+                                <input  name="direccion" value="{{ cliente.cliente_direccion }}" type="text"  class="form-control" placeholder="">
+                            </div>
+                        </div> 
+
+                        <div class="col-xs-4">
+                            <div class="form-group" >
+                                <label class="control-label" >Observación</label>
+                                <input name="clienteobservacion" value="{{ cliente.cliente_observacion }}" type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>  
+
+
+                        <div class="col-xs-2">
+                            <div class="form-group" >
+                                <label class="control-label" > Profesión </label>
+                                <input  name="profesion" value="{{ cliente.cliente_profesion }}"  type="text" class="form-control" placeholder="Profesión">
+                            </div>
+                        </div> 
+
+
+
+                        <div class="col-xs-2">
+                            <div class="form-group" >
+                                <label class="control-label" >Motivo del Viaje</label>
+                                {{ combo.motivoviaje|raw }}
+                            </div>
+                        </div>  
+
+                        <div class="col-xs-2">
+
+                            <div class="form-group" >
+                                <label class="control-label" >Forma de Pago</label>
+                                {{ combo.formapago|raw }}
+                            </div>
+                        </div>  
+
+                        <div class="col-xs-2">
+
+                            <div class="form-group" >
+                                <label class="control-label" >Cta Cliente Permiso </label>
+                                {{ combo.permiso|raw }}
+                            </div>
+                        </div> 
+
+                        <div class="col-xs-2">
+
+                            <div class="form-group" >
+                                <label class="control-label" >Tipo Credito </label>
+                                {{ combo.tipocredito|raw }}
+                            </div>
+                        </div>                         
+
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+
+
+            </div>
+
+
+
+
+        </div>
+        <div class="row">
+
+
+            <div class="col-md-12">
+
+
+
+                <div class="box box-warning   box-solid">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Garantía de la reservación </h3>
+                        <input type="hidden" name="garantiareservacion_id" value="{{ cliente.garantiareservacion_id }}" >
+
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                        </div><!-- /.box-tools -->
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+
+                        <div class="col-xs-2">
+                            <div class="form-group" >
+                                <label class="control-label" >Nombre Titular TDC</label>
+                                <input  value="{{ cliente.garantia_nombre_titular }}"   name="nombre_titular" type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2">
+                            <div class="form-group" >
+                                <label class="control-label" >Banco Emisor</label>
+                                <input  value="{{ cliente.garantia_banco }}" name="banco"  type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2">
+                            <div class="form-group" >
+                                <label class="control-label" >N° Documento Titular</label>
+                                <input   value="{{ cliente.garantia_documento_titular }}" name="documento_titular" type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>   
+
+                        <div class="col-xs-2">
+                            <div class="form-group" >
+                                <label class="control-label" >Fecha de Vencimiento</label>
+                                <input   value="{{ cliente.garantia_vencimiento }}" name="vencimiento" type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>
+
+
+                        <div class="col-xs-3">
+                            <div class="form-group" >
+                                <label class="control-label" >Número TDC</label>
+                                <input name="numero"  value="{{ cliente.garantia_numero }}" type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>                 
+
+                        <div class="col-xs-1">
+                            <div class="form-group" >
+                                <label class="control-label" >CSTDC</label>
+                                <input name="codigo"  type="text" value="{{ cliente.garantia_codigo }}" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+
+                <div class="box box-danger collapsed-box box-solid">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Datos de Facturación ( Empresa )</h3>
+                        <input type="hidden" name="empresa_id" value="{{ cliente.empresa_id }}" >
+
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                        </div><!-- /.box-tools -->
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+
+                        <div class="col-md-5">  
+                            <div class="form-group" >
+                                <label class="control-label" >Nombre de la empresa</label>
+                                <input  value="{{ cliente.empresa_nombre }}"  name="nombre_empresa" type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="form-group" >
+                                <label class="control-label" >RIF</label>
+                                <input name="rif_empresa"  value="{{ cliente.empresa_rif }}" type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-5">
+                            <div class="form-group" >
+                                <label class="control-label" >Dirección</label>
+                                <input name="direccion_empresa"   value="{{ cliente.empresa_direccion }}" type="text"  class="form-control" placeholder="">
+                            </div>
+                        </div>  
+
+
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+
+                <!-- general form elements disabled -->
+
+
+
+            </div>   <!-- /.row -->
+        </div>
+    </section><!-- /.content -->
+</form>
+
+{% endblock %}
+
+{% block javascript %}
+
+
+<script src="lsdAjax.js"></script>  
+
+<script>
+
+function validaciones() {
+    $("#acompanante_nacimiento").inputmask("dd/mm/yyyy", {"placeholder": ""});
+}
+
+
+$("#nacimiento").inputmask("dd/mm/yyyy", {"placeholder": ""});
+$("#acompanante_nacimiento").inputmask("dd/mm/yyyy", {"placeholder": ""});
+
+
+
+function registro() {
+
+
+    nombre = $("#acompanante_nombre").val();
+    documento = $("#acompanante_documento").val();
+    nacimiento = $("#acompanante_nacimiento").val();
+    genero = $("#acompanante_genero").val();
+
+    $("#acompanante_nombre").val('');
+    $("#acompanante_documento").val('');
+    $("#acompanante_nacimiento").val('');
+    $("#acompanante_genero").val('');
+
+    accion_lsd('registroacompanantes', [nombre, documento, genero, nacimiento], 'div01');
+
+}
+
+
+
+function editar(documento) {
+
+
+    if (validarfecha($("#acompanante_nacimiento").val())) {
+
+    } else {
+
+        alert('Formato de fecha invalido DD/MM/YYYY');
+
+    }
+
+
+    $("#acompanante_nombre").val('');
+    $("#acompanante_documento").val('');
+    $("#acompanante_nacimiento").val('');
+    $("#acompanante_genero").val('');
+
+    accion_lsd('edicionacompanantes', [documento], 'div02');
+
+}
+
+function eliminar(documento) {
+
+    $("#acompanante_nombre").val('');
+    $("#acompanante_documento").val('');
+    $("#acompanante_nacimiento").val('');
+    $("#acompanante_genero").val('');
+
+    accion_lsd('eliminaracompanantes', [documento], 'div01');
+}
+
+
+
+
+
+
+</script>
+
+{% endblock %}
+
+
+
+
+
+
+

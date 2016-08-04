@@ -1,0 +1,257 @@
+{% extends "base.html.twig" %}
+
+
+{% block content_wrapper %}
+
+
+    <section class="content-header">
+          <h1>
+            Modulo de Reservación
+            <small>Preview</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Forms</a></li>
+            <li class="active">General Elements</li>
+          </ol>
+        </section>
+
+
+
+
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+              <!-- general form elements -->
+
+                  <div class="box box-primary">
+                    <div class="box-header">
+                      <h3 class="box-title">
+                        Desde <strong>{{ dato.desde }}</strong>   Hasta  <strong>{{ dato.hasta }}</strong>
+
+                      </h3><br>
+                      <h4 class="box-title">
+                          {% for habitacion in habitaciones %}
+                        <span class="label label-{{ habitacion.color }}">{{ habitacion.categoria }}</span>
+                          {% endfor %}</h4>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+                    <form role="form" method="POST" action="index.php">
+                    <input type="hidden" name="reservacion_busqueda_huesped" value="true" >
+                      <div class="box-body">
+                        <div class="col-md-6">
+                          <div class="form-group" >
+                            <label class="control-label" >Número de Documento Huesped</label>
+                            <input type="text" name="numero_documento"value="{{ huesped.documento }}" class="form-control" placeholder="Cedula o Pasaporte">
+                           
+                          </div>
+                        </div>       
+                        <div class="col-md-6">
+                          <div class="form-group" >
+                           <span class="label label-{{ huesped.color }}">{{ huesped.mensaje }}</span>   
+                          </div>
+                        </div>                            
+                      </div><!-- /.box-body -->
+                      <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Proceder Verificar Huesped</button>
+     
+                        <input onclick="registro_huesped()" class="btn btn-danger" value="Efectuar Reservación ">
+                        
+                      </div>
+                    </form>
+                  </div><!-- /.box -->
+
+              <!-- Form Element sizes -->
+              <div class="box box-success">
+                <div class="box-header">
+                  <h3 class="box-title">Datos del Huesped Principal</h3>
+                </div>
+                <div class="box-body">
+                    <form role="form"  name="registro" id="registro" method="POST" action="index.php">      
+                    <input type="hidden" name="reservacion_huesped02" value="true" > 
+                    <input type="hidden" name="cliente_id" value="{{ huesped.id }}" > 
+ 
+                    <div class="col-xs-4">
+                                <div class="form-group" >
+                                    <label class="control-label" >Nombres</label>
+                                    <input name="nombre" value="{{ huesped.nombre }}" type="text" class="form-control" placeholder="">
+                                </div>
+                      </div>
+
+                      <div class="col-xs-4">
+                                <div class="form-group" >
+                                    <label class="control-label" >Apellidos</label>
+                                    <input name="apellido" value="{{ huesped.apellido }}" type="text" class="form-control" placeholder="">
+                                </div>
+                      </div>  
+
+
+                      <div class="col-xs-4">
+                                <div class="form-group" >
+                                    <label class="control-label" >Email</label>
+                                    <input  name="correo" value="{{ huesped.correo }}"  type="text" class="form-control" placeholder="">
+                                </div>
+                      </div> 
+
+                      <div class="col-xs-4">
+                                <div class="form-group" >
+                                    <label class="control-label" >Teléfono</label>
+                                    <input  name="telefono" value="{{ huesped.telefono }}"  type="text" class="form-control" placeholder="">
+                                </div>
+                      </div> 
+
+                      <div class="col-xs-4">
+                                <div class="form-group" >
+                                    <label class="control-label" >Movil</label>
+                                    <input name="movil" value="{{ huesped.movil }}"  type="text" class="form-control" placeholder="">
+                                </div>
+                      </div> 
+
+                      <div class="col-xs-4">
+                                <div class="form-group" >
+                                    <label class="control-label" >Nacionalidad</label>
+                                    <input  name="nacionalidad" value="{{ huesped.nacionalidad }}" type="text" class="form-control" placeholder="">
+                                </div>
+                      </div>  
+
+                      <div class="col-xs-12">
+                                <div class="form-group" >
+                                    <label class="control-label" >Dirección</label>
+                                    <input  name="direccion" value="{{ huesped.direccion }}" type="text"  class="form-control" placeholder="">
+                                </div>
+                      </div> 
+
+      
+           
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+
+            </div><!--/.col (left) -->
+            <!-- right column -->
+            <div class="col-md-6">
+              
+            
+              <!-- general form elements disabled -->
+              <div class="box box-warning">
+                <div class="box-header">
+                  <h3 class="box-title">Garantía de la Reservación</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+     
+                      <div class="col-xs-6">
+                                <div class="form-group" >
+                                    <label class="control-label" >Nombre Titular TDC</label>
+                                    <input  name="nombre_titular" type="text" class="form-control" placeholder="">
+                                </div>
+                      </div>
+
+                      <div class="col-xs-6">
+                                <div class="form-group" >
+                                    <label class="control-label" >Banco Emisor TDC</label>
+                                    <input name="banco"  type="text" class="form-control" placeholder="">
+                                </div>
+                      </div>
+
+                       <div class="col-xs-6">
+                                <div class="form-group" >
+                                    <label class="control-label" >Cédula o Pasaporte Titular TDC</label>
+                                    <input name="documento_titular" type="text" class="form-control" placeholder="">
+                                </div>
+                      </div>   
+                    
+
+
+                      <div class="col-xs-6">
+                                <div class="form-group" >
+                                    <label class="control-label" >Fecha de Vencimiento TDC</label>
+                                    <input name="vencimiento" type="text" class="form-control" placeholder="">
+                                </div>
+                      </div>
+
+
+
+
+                       <div class="col-xs-6">
+                                <div class="form-group" >
+                                    <label class="control-label" >Número TDC</label>
+                                    <input name="numero"  type="text" class="form-control" placeholder="">
+                                </div>
+                      </div>                 
+                    
+                      <div class="col-xs-6">
+                                <div class="form-group" >
+                                    <label class="control-label" >Codigo de Seguridad TDC</label>
+                                    <input name="codigo"  type="text" class="form-control" placeholder="">
+                                </div>
+                      </div>
+                </div><!-- /.box-body -->
+
+              </div><!-- /.box -->
+
+              <div class="box box-primary">
+                  
+                <div class="box-header">
+                  <h3 class="box-title">Datos de la Facturación</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+               
+                  <div class="box-body">
+                     <div class="col-md-6">
+                                <div class="form-group" >
+                                    <label class="control-label" >Nombre de la empresa</label>
+                                    <input  name="nombre_empresa" type="text" class="form-control" placeholder="">
+                                </div>
+
+                     </div>
+                      <div class="col-md-6">
+                                <div class="form-group" >
+                                    <label class="control-label" >RIF</label>
+                                    <input name="rif_empresa" type="text" class="form-control" placeholder="">
+                                </div>
+                      </div>
+                        
+                      <div class="col-md-12">
+                                <div class="form-group" >
+                                    <label class="control-label" >Dirección</label>
+                                    <input name="direccion_empresa" type="text" class="form-control" placeholder="">
+                                </div>
+                      </div>  
+
+                  </div><!-- /.box-body -->
+
+              </div><!-- /.box -->
+
+           </form>
+            </div><!--/.col (right) -->
+          </div>   <!-- /.row -->
+        </section><!-- /.content -->
+
+
+{% endblock %}
+
+{% block javascript %}
+ 
+
+<script type="text/javascript">
+
+function registro_huesped(){    
+document.registro.submit();  
+
+
+
+}
+
+</script>
+
+ {% endblock %}
+
+
+
+
+
+
+

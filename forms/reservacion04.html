@@ -1,0 +1,129 @@
+{% extends "base.html.twig" %}
+
+
+{% block content_wrapper %}
+
+<!-- Main content -->
+<section class="content">
+    <div class="row" style="margin-bottom: 0; padding-bottom: 0">
+        <!-- left column -->
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-body"> 
+
+
+                    <table class="table table-condensed" style="font-size: 24px;">
+                        <tr>
+                            <td style="font-size: 24px; width: 300px" >  <i class="fa fa-tag"></i>    <strong>{{ reservaciones[0].codigo_id }}</strong>  </td>
+                            <td>  <i class="fa fa-calendar"></i>     <i class="fa fa-arrow-down"> </i> {{ reservaciones[0].reservacion_desde }} &nbsp;&nbsp;&nbsp;&nbsp;</td>                              
+                            <td>  <i class="fa fa-calendar"></i>    <i class="fa fa-arrow-up"> </i>   {{ reservaciones[0].reservacion_hasta }} &nbsp;&nbsp;&nbsp;&nbsp; </td>
+                            <td>   <i class="fa fa-bed"> </i>   {{ reservaciones[0].reservacion_nombre }} {{ reservaciones[0].reservacion_categoria }}  </td>           
+
+
+                        </tr>
+                    </table>
+
+                </div><!-- /.box-header -->
+
+            </div><!-- /.box -->   
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+            <form role="form" method="POST" action="index.php">
+                <input type="hidden" name="reservacion04" value="true" > 
+                <input type="hidden" name="reservacion_id" value="{{ reservaciones[0].reservacion_id }}" >     
+                <!-- general form elements -->
+
+                <div class="box box-success">
+
+                    <div class="box-body table-responsive no-padding">
+
+
+
+                        <table class="table table-hover">
+                            <tr>
+
+                                <td style="text-align:left;"> 
+
+                                    <button    value="true" type="submit"  class="btn btn-block btn-danger " style="width: 300px">
+                                        <i class="fa fa-pencil"></i>    Cancelar la reservación
+                                    </button>   
+
+                                </td>   
+
+                        </table>
+
+
+
+                    </div>        
+                </div>             
+
+
+                <div class="box box-success  box-solid">
+                    <div class="box-header with-border">
+                        <i class="fa fa-user"></i> <h3 class="box-title"> Datos Adicionales </h3>
+
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                        </div><!-- /.box-tools -->
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+
+
+
+
+                        <div class="col-xs-12">
+                            <div class="form-group" >
+                                <label class="control-label" >Observación: </label>
+                                <input name="observacionreservacion" value="" type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>
+
+                     
+
+
+
+
+
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+
+  
+
+            </form>
+        </div><!--/.col (left) -->
+        <!-- right column -->
+
+    </div>   <!-- /.row -->
+</section><!-- /.content -->
+
+
+{% endblock %}
+
+{% block javascript %}
+
+
+<script type="text/javascript">
+    var file = "reservacion02";
+    function registro_huesped() {
+        document.registro.submit();
+
+
+
+    }
+
+</script>
+
+{% endblock %}
+
+
+
+
+
+
+

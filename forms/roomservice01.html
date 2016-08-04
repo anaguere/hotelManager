@@ -1,0 +1,89 @@
+{% extends "base.html.twig" %}
+
+
+{% block content_wrapper %}
+<section class="content-header">
+    <div class="row">
+        <div class="col-md-2" style="margin-bottom: 5px; font-weight: bold">
+            <i class="fa fa-bed "></i> AMA DE LLAVES 
+        </div>    
+        <!-- left column -->
+        <div class="col-md-2" style="margin-bottom: 5px; font-weight: bold">
+            <i class="fa fa-calendar"></i> {{ dato.hoy }}
+        </div>      
+        <div class="col-md-8" style="margin-bottom: 5px">
+            <span class="badge bg-green" > Vacante Limpia: 2 </span>    
+            <span class="badge bg-blue" > Vacante Sucia: 2</span>          
+            <span class="badge bg-yellow" >Ocupada Limpia: 1</span>    
+            <span class="badge bg-red" >Ocupada Sucia: 3 </span>      
+            <span class="badge bg-gray" >Fuera de servicio: 6 </span>      
+        </div>
+    </div>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <!-- left column -->
+    <div class="col-md-12">
+        <div  id="visor"class="box box-warning" style="padding-left:20px; padding-right: 20px">
+
+            {% for habitaciony in habitaciones %}
+            <div class="row">
+                {% for habitacion in habitaciony %}
+
+               <div class="col-md-2" style="padding: 2px" >
+                    <a href="?opcion=roomservice01&codigo={{ habitacion.habitacion_id }}" class="btn btn-block btn-{{ habitacion.estadoocupacion_color }} btn-sm btn1_rack" >
+                        {{ habitacion.habitacion_categoria }}<br>
+                        <strong> {{ habitacion.habitacion_nombre }}</strong>
+                    </a>
+                </div>                                   
+
+
+
+                {% endfor %}  
+
+            </div>
+
+            {% endfor %}  
+
+            <!-- /.box-body -->
+        </div><!-- /.box -->          
+
+
+    </div><!--/.col (left) -->
+
+
+</section><!-- /.content -->
+
+
+
+
+
+
+{% endblock %}
+
+{% block javascript %}
+
+
+<script src="lsdAjax.js"></script>  
+
+<script>
+
+                                function test(val) {
+                                accion_lsd('rack01', [val], 'visor');
+                                }
+
+                        $("#example1").dataTable();
+                                //iCheck for checkbox and radio inputs
+
+
+</script>
+
+{% endblock %}
+
+
+
+
+
+
+
